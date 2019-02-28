@@ -41,7 +41,15 @@ namespace WebServiceGradedDiagnosis
         }
 
         [WebMethod]
-        public XmlDocument TestResponse()
+        public XmlDocument GetPatientInfoBySeachType(string requestXml)
+        {
+            XmlDocument doc = new XmlDocument();
+
+            return doc;
+        }
+
+        [WebMethod]
+        public XmlDocument GetJCList(string requestXml)
         {
             JCRecordBll bll = new JCRecordBll();
             JCRecord jCRecord1 = new JCRecord
@@ -60,7 +68,6 @@ namespace WebServiceGradedDiagnosis
             {
                 jCRecord1,jCRecord2,jCRecord3
             };
-
 
             return bll.ConvertJCRecordToXml(jCRecords); 
         }
