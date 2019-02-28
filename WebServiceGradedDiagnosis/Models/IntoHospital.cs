@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebServiceGradedDiagnosis.Models
 {
-    public class IntoHospitalRecord
+    public class IntoHospital
     {
         public string HospitalId { get; set; }
         public string HospitalName { get; set; }

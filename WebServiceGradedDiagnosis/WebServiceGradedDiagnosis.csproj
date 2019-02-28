@@ -76,7 +76,7 @@
     <Compile Include="Common\RequestHelper.cs" />
     <Compile Include="Common\SqlCommon.cs" />
     <Compile Include="Common\SqlDataHelper.cs" />
-    <Compile Include="Models\IntoHospitalRecord.cs" />
+    <Compile Include="Models\IntoHospital.cs" />
     <Compile Include="Models\JCRecord.cs" />
     <Compile Include="Models\JYDetail.cs" />
     <Compile Include="Models\JYRecord.cs" />
