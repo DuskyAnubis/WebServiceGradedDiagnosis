@@ -69,6 +69,7 @@
     <Content Include="WebServiceGradedDiagnosis.asmx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\IntoHospitalBll.cs" />
     <Compile Include="BLL\JCRecordBll.cs" />
     <Compile Include="BLL\JYDetailBll.cs" />
     <Compile Include="BLL\JYRecordBll.cs" />

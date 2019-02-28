@@ -35,7 +35,7 @@ namespace WebServiceGradedDiagnosis
             //    ));
             //doc.LoadXml(xdoc.ToString());
 
-            Request request= RequestHelper.GetRequest(requestXml);
+            Request request = RequestHelper.GetRequest(requestXml);
 
             return doc;
         }
@@ -43,9 +43,14 @@ namespace WebServiceGradedDiagnosis
         [WebMethod]
         public XmlDocument GetPatientInfoBySeachType(string requestXml)
         {
-            XmlDocument doc = new XmlDocument();
+            PatientBll bll = new PatientBll();
 
-            return doc;
+            Patient patient = new Patient
+            {
+                PatientName = "患者"
+            };
+
+            return bll.ConvertPatientToXml(patient);
         }
 
         [WebMethod]
@@ -70,7 +75,7 @@ namespace WebServiceGradedDiagnosis
                 jCRecord1,jCRecord2,jCRecord3
             };
 
-            return bll.ConvertJCRecordToXml(jCRecords); 
+            return bll.ConvertJCRecordToXml(jCRecords);
         }
 
         [WebMethod]
@@ -105,7 +110,7 @@ namespace WebServiceGradedDiagnosis
 
             JYDetail jYDetail1 = new JYDetail
             {
-                ItemName="项目1"
+                ItemName = "项目1"
             };
             JYDetail jYDetail2 = new JYDetail
             {
@@ -121,6 +126,20 @@ namespace WebServiceGradedDiagnosis
             };
 
             return bll.ConvertJYDetailToXml(jYDetails);
+        }
+
+        [WebMethod]
+        public XmlDocument GetIntoHospitalList(string requestXml)
+        {
+            IntoHospitalBll bll = new IntoHospitalBll();
+
+            IntoHospital intoHospital = new IntoHospital
+            {
+                HospitalId = "",
+                PatientName = "患者"
+            };
+
+            return bll.ConvertIntoHospitalToXml(intoHospital);
         }
     }
 }
