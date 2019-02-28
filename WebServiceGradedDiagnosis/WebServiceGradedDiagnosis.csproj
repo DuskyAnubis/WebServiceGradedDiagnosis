@@ -74,6 +74,7 @@
     <Compile Include="BLL\JYDetailBll.cs" />
     <Compile Include="BLL\JYRecordBll.cs" />
     <Compile Include="BLL\PatientBll.cs" />
+    <Compile Include="BLL\PatientDiseCourseBll.cs" />
     <Compile Include="Common\RequestHelper.cs" />
     <Compile Include="Common\SqlCommon.cs" />
     <Compile Include="Common\SqlDataHelper.cs" />

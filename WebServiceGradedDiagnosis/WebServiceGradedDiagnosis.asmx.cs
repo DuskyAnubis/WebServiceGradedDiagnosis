@@ -141,5 +141,33 @@ namespace WebServiceGradedDiagnosis
 
             return bll.ConvertIntoHospitalToXml(intoHospital);
         }
+
+        [WebMethod]
+        public XmlDocument GetPatientDiseCourse(string requestXml)
+        {
+            PatientDiseCourseBll bll = new PatientDiseCourseBll();
+
+            PatientDiseCourse patientDiseCourse = new PatientDiseCourse
+            {
+                HospitalId = "",
+                PatientName = "患者"
+            };
+
+            PatientDiseCourseDetail patientDiseCourseDetail1 = new PatientDiseCourseDetail
+            {
+                Title = "病程1"
+            };
+            PatientDiseCourseDetail patientDiseCourseDetail2 = new PatientDiseCourseDetail
+            {
+                Title = "病程2"
+            };
+            List<PatientDiseCourseDetail> patientDiseCourseDetails = new List<PatientDiseCourseDetail>
+            {
+                patientDiseCourseDetail1,
+                patientDiseCourseDetail2
+            };
+
+            return bll.ConvertPatientDiseCourseToXml(patientDiseCourse, patientDiseCourseDetails);
+        }
     }
 }
