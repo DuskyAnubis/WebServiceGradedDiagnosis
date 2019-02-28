@@ -31,6 +31,19 @@ namespace WebServiceGradedDiagnosis.Common
             return request;
         }
 
+        public static JYDetailRequest GetJYDetailRequest(string requestXml)
+        {
+            XmlReader xmlReader = XmlReader.Create(new StringReader(requestXml));
+            XDocument xdoc = XDocument.Load(xmlReader);
+            JYDetailRequest request = new JYDetailRequest
+            {
+                HospitalId = xdoc.Element("request").Element("hospitalId").Value,
+                ReqId = xdoc.Element("request").Element("ReqId").Value,
+            };
+
+            return request;
+        }
+
         private static string CleanStringEmpty(string str)
         {
             if (!string.IsNullOrEmpty(str))

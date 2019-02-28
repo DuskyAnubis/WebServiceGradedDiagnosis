@@ -70,6 +70,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\JCRecordBll.cs" />
+    <Compile Include="BLL\JYDetailBll.cs" />
+    <Compile Include="BLL\JYRecordBll.cs" />
     <Compile Include="BLL\PatientBll.cs" />
     <Compile Include="Common\RequestHelper.cs" />
     <Compile Include="Common\SqlCommon.cs" />

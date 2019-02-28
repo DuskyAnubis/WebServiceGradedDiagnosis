@@ -52,6 +52,7 @@ namespace WebServiceGradedDiagnosis
         public XmlDocument GetJCList(string requestXml)
         {
             JCRecordBll bll = new JCRecordBll();
+
             JCRecord jCRecord1 = new JCRecord
             {
                 PatientName = "患者1"
@@ -70,6 +71,56 @@ namespace WebServiceGradedDiagnosis
             };
 
             return bll.ConvertJCRecordToXml(jCRecords); 
+        }
+
+        [WebMethod]
+        public XmlDocument GetJYList(string requestXml)
+        {
+            JYRecordBll bll = new JYRecordBll();
+
+            JYRecord jYRecord1 = new JYRecord
+            {
+                PatientName = "患者1"
+            };
+            JYRecord jYRecord2 = new JYRecord
+            {
+                PatientName = "患者2"
+            };
+            JYRecord jYRecord3 = new JYRecord
+            {
+                PatientName = "患者3"
+            };
+            List<JYRecord> jCRecords = new List<JYRecord>
+            {
+                jYRecord1,jYRecord2,jYRecord3
+            };
+
+            return bll.ConvertJYRecordToXml(jCRecords);
+        }
+
+        [WebMethod]
+        public XmlDocument GetJYDetail(string requestXml)
+        {
+            JYDetailBll bll = new JYDetailBll();
+
+            JYDetail jYDetail1 = new JYDetail
+            {
+                ItemName="项目1"
+            };
+            JYDetail jYDetail2 = new JYDetail
+            {
+                ItemName = "项目2"
+            };
+            JYDetail jYDetail3 = new JYDetail
+            {
+                ItemName = "项目3"
+            };
+            List<JYDetail> jYDetails = new List<JYDetail>
+            {
+                jYDetail1,jYDetail2,jYDetail3
+            };
+
+            return bll.ConvertJYDetailToXml(jYDetails);
         }
     }
 }

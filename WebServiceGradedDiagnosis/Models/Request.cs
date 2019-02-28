@@ -16,4 +16,10 @@ namespace WebServiceGradedDiagnosis.Models
         public string Other1 { get; set; }
         public string Other2 { get; set; }
     }
+
+    public class JYDetailRequest
+    {
+        public string HospitalId { get; set; }
+        public string ReqId { get; set; } 
+    }
 }

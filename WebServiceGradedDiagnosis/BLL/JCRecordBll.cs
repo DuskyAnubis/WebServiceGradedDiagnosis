@@ -16,10 +16,10 @@ namespace WebServiceGradedDiagnosis.BLL
             XmlDocument xmlDoc = new XmlDocument();
 
             XDocument xDoc = new XDocument
-           (
-              new XDeclaration("1.0", "utf-8", "yes"),
-              new XElement
-              (
+            (
+               new XDeclaration("1.0", "utf-8", "yes"),
+               new XElement
+               (
                   "response",
                   new XElement("resultCode", 1),
                   new XElement("resultMsg", "获取患者检查记录成功!"),
@@ -68,7 +68,7 @@ namespace WebServiceGradedDiagnosis.BLL
                           new XElement("dzjkNo", jcRecord.DzjkNo)
                       )
                   )
-              )
+               )
            );
 
             xmlDoc.LoadXml(xDoc.ToString());
