@@ -73,6 +73,7 @@
     <Compile Include="BLL\JCRecordBll.cs" />
     <Compile Include="BLL\JYDetailBll.cs" />
     <Compile Include="BLL\JYRecordBll.cs" />
+    <Compile Include="BLL\OutHospitalBll.cs" />
     <Compile Include="BLL\PatientBll.cs" />
     <Compile Include="BLL\PatientChargedBll.cs" />
     <Compile Include="BLL\PatientDiseCourseBll.cs" />

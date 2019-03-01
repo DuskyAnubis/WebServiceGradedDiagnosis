@@ -183,5 +183,19 @@ namespace WebServiceGradedDiagnosis
 
             return bll.ConvertPatientChargedToXml(patientCharged);
         }
+
+        [WebMethod]
+        public XmlDocument GetIOutHospitalInfo(string requestXml)
+        {
+            OutHospitalBll bll = new OutHospitalBll();
+
+            OutHospital outHospital = new OutHospital
+            {
+                HospitalId = "",
+                PatientName = "患者"
+            };
+
+            return bll.ConvertOutHospitalToXml(outHospital);
+        }
     }
 }
