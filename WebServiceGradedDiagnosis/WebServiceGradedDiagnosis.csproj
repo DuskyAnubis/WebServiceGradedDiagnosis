@@ -77,6 +77,10 @@
     <Compile Include="BLL\PatientBll.cs" />
     <Compile Include="BLL\PatientChargedBll.cs" />
     <Compile Include="BLL\PatientDiseCourseBll.cs" />
+    <Compile Include="BLL\PatientDiseCourseDetailBll.cs" />
+    <Compile Include="BLL\PatientMedicalRecordBll.cs" />
+    <Compile Include="BLL\PrescriptionBll.cs" />
+    <Compile Include="BLL\PrescriptionDetailBll.cs" />
     <Compile Include="Common\RequestHelper.cs" />
     <Compile Include="Common\SqlCommon.cs" />
     <Compile Include="Common\SqlDataHelper.cs" />

@@ -197,5 +197,61 @@ namespace WebServiceGradedDiagnosis
 
             return bll.ConvertOutHospitalToXml(outHospital);
         }
+
+        [WebMethod]
+        public XmlDocument GetPrescriptionInfo(string requestXml)
+        {
+            PrescriptionBll bll = new PrescriptionBll();
+
+            Prescription prescription = new Prescription
+            {
+                HospitalId = "",
+                PatientName = "患者"
+            };
+
+            PrescriptionDetail prescriptionDetail1 = new PrescriptionDetail
+            {
+                MedicineName = "药品1"
+            };
+            PrescriptionDetail PrescriptionDetail2 = new PrescriptionDetail
+            {
+                MedicineName = "药品2"
+            };
+            List<PrescriptionDetail> prescriptionDetails = new List<PrescriptionDetail>
+            {
+                prescriptionDetail1,
+                PrescriptionDetail2
+            };
+
+            return bll.ConvertPrescriptionToXml(prescription, prescriptionDetails);
+        }
+
+        [WebMethod]
+        public XmlDocument GetPatientMedicalRecords(string requestXml)
+        {
+            PatientMedicalRecordBll bll = new PatientMedicalRecordBll();
+
+            PatientMedicalRecord patientMedicalRecord = new PatientMedicalRecord
+            {
+                HospitalId = "",
+                PatientName = "患者"
+            };
+
+            PrescriptionDetail prescriptionDetail1 = new PrescriptionDetail
+            {
+                MedicineName = "药品1"
+            };
+            PrescriptionDetail PrescriptionDetail2 = new PrescriptionDetail
+            {
+                MedicineName = "药品2"
+            };
+            List<PrescriptionDetail> prescriptionDetails = new List<PrescriptionDetail>
+            {
+                prescriptionDetail1,
+                PrescriptionDetail2
+            };
+
+            return bll.ConvertPatientMedicalRecordToXml(patientMedicalRecord, prescriptionDetails);
+        }
     }
 }
