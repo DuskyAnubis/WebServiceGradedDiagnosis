@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
-using WebServiceGradedDiagnosis.Common;
+using WebServiceGradedDiagnosis.DAL;
 using WebServiceGradedDiagnosis.Models;
 
 namespace WebServiceGradedDiagnosis.BLL
@@ -72,6 +72,13 @@ namespace WebServiceGradedDiagnosis.BLL
             xmlDoc.LoadXml(xDoc.ToString());
 
             return xmlDoc;
+        }
+
+        public Patient GetPatient(Request request)
+        {
+            PatientDal patientDal = new PatientDal();
+
+            return patientDal.GetPatient(request);
         }
     }
 }
