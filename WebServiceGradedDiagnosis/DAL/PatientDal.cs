@@ -16,9 +16,57 @@ namespace WebServiceGradedDiagnosis.DAL
             Patient patient;
             if (string.IsNullOrEmpty(request.OutPatientNo))
             {
-                patient = null;
+                string sqlBak = $"select top 1 病人编号,住院号,姓名,入院日期,医保类型,性别,身份证号,年龄,出生日期,民族,婚否,职业,电话,家庭住址,联系人,联系人地址,联系电话,关系,入院诊断,确诊诊断,出院日期,医师代码,科室,病室,床位 from ZY_病案库 where 病人编号='{request.PID}' or 住院号='{request.InPatientNo}' or 身份证号='{request.IdentCard}' order by 入院日期 desc";
+                DataTable dtBak = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlBak).Tables[0];
+                if (dtBak != null && dtBak.Rows.Count > 0)
+                {
+                    string sqlDep = $"select 科室Id, 科室代码,科室名称 from 科室 where 科室名称='{dtBak.Rows[0]["科室"].ToString()}'";
+                    string sqlDoc = $"select id,医师代码,医师姓名,所在科室,挂号科室,划价号 from 医师代码 where 医师姓名='{dtBak.Rows[0]["医师代码"].ToString()}'";
 
-                return null;
+                    DataTable dtDep = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlDep).Tables[0];
+                    DataTable dtDoc = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlDoc).Tables[0];
+
+                    patient = new Patient
+                    {
+                        PID = dtBak.Rows[0]["病人编号"].ToString(),
+                        PatientName = dtBak.Rows[0]["姓名"].ToString(),
+                        HospitalId = ConfigurationManager.AppSettings["HospitalId"],
+                        HospitalName = ConfigurationManager.AppSettings["HospitalName"],
+                        GenderValue = dtBak.Rows[0]["性别"].ToString() == "男" ? "0" : "1",
+                        PatientAge = DateTime.Now.Year - Convert.ToDateTime(dtBak.Rows[0]["出生日期"]).Year,
+                        Birthday = Convert.ToDateTime(dtBak.Rows[0]["出生日期"]).ToString("yyyy-MM-dd"),
+                        Nation = dtBak.Rows[0]["民族"].ToString(),
+                        PatientStature = null,
+                        PatientWeight = null,
+                        Phone = dtBak.Rows[0]["电话"].ToString(),
+                        Address = dtBak.Rows[0]["家庭住址"].ToString(),
+                        Contacts = dtBak.Rows[0]["联系人"].ToString(),
+                        RelationShip = dtBak.Rows[0]["关系"].ToString(),
+                        ContactPhone = dtBak.Rows[0]["联系电话"].ToString(),
+                        ContactAddress = dtBak.Rows[0]["联系人地址"].ToString(),
+                        IdentCard = dtBak.Rows[0]["身份证号"].ToString(),
+                        InsuranceTypeCode = null,
+                        InsuranceTypeName = dtBak.Rows[0]["医保类型"].ToString(),
+                        InsuranceNo = null,
+                        DeptCode = dtDep.Rows[0]["科室代码"].ToString(),
+                        DeptName = dtBak.Rows[0]["科室"].ToString(),
+                        CheckTime = null,
+                        InTime = Convert.ToDateTime(dtBak.Rows[0]["入院日期"]).ToString("yyyy-MM-dd"),
+                        OutTime = dtBak.Rows[0]["出院日期"] != null ? Convert.ToDateTime(dtBak.Rows[0]["出院日期"]).ToString("yyyy-MM-dd") : null,
+                        Other1 = null,
+                        Other2 = null,
+                        Other3 = null,
+                        Other4 = null,
+                        Other5 = null,
+                        DzjkNo = null
+                    };
+
+                    return patient;
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {
