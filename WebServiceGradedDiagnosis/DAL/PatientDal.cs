@@ -48,7 +48,7 @@ namespace WebServiceGradedDiagnosis.DAL
                         InsuranceTypeCode = null,
                         InsuranceTypeName = dtBak.Rows[0]["医保类型"].ToString(),
                         InsuranceNo = null,
-                        DeptCode = dtDep.Rows[0]["科室代码"].ToString(),
+                        DeptCode = dtDep != null && dtDep.Rows.Count > 0 ? dtDep.Rows[0]["科室代码"].ToString() : null,
                         DeptName = dtBak.Rows[0]["科室"].ToString(),
                         CheckTime = null,
                         InTime = Convert.ToDateTime(dtBak.Rows[0]["入院日期"]).ToString("yyyy-MM-dd"),
