@@ -84,6 +84,7 @@
     <Compile Include="Common\RequestHelper.cs" />
     <Compile Include="Common\SqlCommon.cs" />
     <Compile Include="Common\SqlDataHelper.cs" />
+    <Compile Include="DAL\PatientDal.cs" />
     <Compile Include="Models\IntoHospital.cs" />
     <Compile Include="Models\JCRecord.cs" />
     <Compile Include="Models\JYDetail.cs" />
@@ -112,9 +113,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAL\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
