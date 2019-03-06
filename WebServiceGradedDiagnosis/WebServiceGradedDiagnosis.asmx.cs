@@ -54,7 +54,7 @@ namespace WebServiceGradedDiagnosis
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 XDocument xDoc = new XDocument
                    (
@@ -148,15 +148,52 @@ namespace WebServiceGradedDiagnosis
         [WebMethod]
         public XmlDocument GetIntoHospitalList(string requestXml)
         {
-            IntoHospitalBll bll = new IntoHospitalBll();
-
-            IntoHospital intoHospital = new IntoHospital
+            XmlDocument doc;
+            try
             {
-                HospitalId = "",
-                PatientName = "患者"
-            };
+                Request request = RequestHelper.GetRequest(requestXml);
+                IntoHospitalBll intoHospitalBll = new IntoHospitalBll();
+                IntoHospital intoHospital = intoHospitalBll.GetIntoHospital(request);
 
-            return bll.ConvertIntoHospitalToXml(intoHospital);
+                if (intoHospital is null)
+                {
+                    XDocument xDoc = new XDocument
+                    (
+                      new XDeclaration("1.0", "utf-8", "yes"),
+                      new XElement
+                      (
+                       "response",
+                       new XElement("resultCode", 0),
+                       new XElement("resultMsg", "未能查询到患者入院记录!"),
+                       new XElement("resultContent")
+                      )
+                    );
+                    doc = new XmlDocument();
+                    doc.LoadXml(xDoc.ToString());
+                }
+                else
+                {
+                    doc = intoHospitalBll.ConvertIntoHospitalToXml(intoHospital);
+                }
+            }
+            catch (Exception)
+            {
+                XDocument xDoc = new XDocument
+                  (
+                    new XDeclaration("1.0", "utf-8", "yes"),
+                    new XElement
+                    (
+                     "response",
+                     new XElement("resultCode", 0),
+                     new XElement("resultMsg", "系统出现内部错误!"),
+                     new XElement("resultContent")
+                    )
+                  );
+                doc = new XmlDocument();
+                doc.LoadXml(xDoc.ToString());
+                return doc;
+            }
+            return doc;
         }
 
         [WebMethod]
