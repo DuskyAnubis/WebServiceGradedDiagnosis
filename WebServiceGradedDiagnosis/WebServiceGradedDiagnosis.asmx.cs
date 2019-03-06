@@ -22,24 +22,6 @@ namespace WebServiceGradedDiagnosis
     // [System.Web.Script.Services.ScriptService]
     public class WebServiceGradedDiagnosis : System.Web.Services.WebService
     {
-
-        [WebMethod]
-        public XmlDocument TestRequest(string requestXml)
-        {
-            XmlDocument doc = new XmlDocument();
-            //XDocument xdoc = new XDocument(
-            //    new XDeclaration("1.0", "utf-8", "yes"),
-            //    new XElement("root",
-            //    new XElement("item", "1"),
-            //    new XElement("item", "2")
-            //    ));
-            //doc.LoadXml(xdoc.ToString());
-
-            Request request = RequestHelper.GetRequest(requestXml);
-
-            return doc;
-        }
-
         [WebMethod]
         public XmlDocument GetPatientInfoBySeachType(string requestXml)
         {
@@ -95,26 +77,22 @@ namespace WebServiceGradedDiagnosis
         [WebMethod]
         public XmlDocument GetJCList(string requestXml)
         {
-            JCRecordBll bll = new JCRecordBll();
+            XmlDocument doc;
+            XDocument xDoc = new XDocument
+            (
+                new XDeclaration("1.0", "utf-8", "yes"),
+                new XElement
+                (
+                   "response",
+                    new XElement("resultCode", 0),
+                    new XElement("resultMsg", "系统未能查询到患者检查记录!"),
+                    new XElement("resultContent")
+                 )
+            );
+            doc = new XmlDocument();
+            doc.LoadXml(xDoc.ToString());
 
-            JCRecord jCRecord1 = new JCRecord
-            {
-                PatientName = "患者1"
-            };
-            JCRecord jCRecord2 = new JCRecord
-            {
-                PatientName = "患者2"
-            };
-            JCRecord jCRecord3 = new JCRecord
-            {
-                PatientName = "患者3"
-            };
-            List<JCRecord> jCRecords = new List<JCRecord>
-            {
-                jCRecord1,jCRecord2,jCRecord3
-            };
-
-            return bll.ConvertJCRecordToXml(jCRecords);
+            return doc;
         }
 
         [WebMethod]
@@ -184,29 +162,22 @@ namespace WebServiceGradedDiagnosis
         [WebMethod]
         public XmlDocument GetPatientDiseCourse(string requestXml)
         {
-            PatientDiseCourseBll bll = new PatientDiseCourseBll();
+            XmlDocument doc;
+            XDocument xDoc = new XDocument
+            (
+                new XDeclaration("1.0", "utf-8", "yes"),
+                new XElement
+                (
+                   "response",
+                    new XElement("resultCode", 0),
+                    new XElement("resultMsg", "系统未能查询到患者病程记录!"),
+                    new XElement("resultContent")
+                )
+            );
+            doc = new XmlDocument();
+            doc.LoadXml(xDoc.ToString());
 
-            PatientDiseCourse patientDiseCourse = new PatientDiseCourse
-            {
-                HospitalId = "",
-                PatientName = "患者"
-            };
-
-            PatientDiseCourseDetail patientDiseCourseDetail1 = new PatientDiseCourseDetail
-            {
-                Title = "病程1"
-            };
-            PatientDiseCourseDetail patientDiseCourseDetail2 = new PatientDiseCourseDetail
-            {
-                Title = "病程2"
-            };
-            List<PatientDiseCourseDetail> patientDiseCourseDetails = new List<PatientDiseCourseDetail>
-            {
-                patientDiseCourseDetail1,
-                patientDiseCourseDetail2
-            };
-
-            return bll.ConvertPatientDiseCourseToXml(patientDiseCourse, patientDiseCourseDetails);
+            return doc;
         }
 
         [WebMethod]
