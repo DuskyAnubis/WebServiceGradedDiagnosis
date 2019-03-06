@@ -232,17 +232,54 @@ namespace WebServiceGradedDiagnosis
         }
 
         [WebMethod]
-        public XmlDocument GetIOutHospitalInfo(string requestXml)
+        public XmlDocument GetOutHospitalInfo(string requestXml)
         {
-            OutHospitalBll bll = new OutHospitalBll();
-
-            OutHospital outHospital = new OutHospital
+            XmlDocument doc;
+            try
             {
-                HospitalId = "",
-                PatientName = "患者"
-            };
+                Request request = RequestHelper.GetRequest(requestXml);
+                OutHospitalBll outHospitalBll = new OutHospitalBll();
+                OutHospital outHospital = outHospitalBll.GetOutHospital(request);
 
-            return bll.ConvertOutHospitalToXml(outHospital);
+                if (outHospital is null)
+                {
+                    XDocument xDoc = new XDocument
+                    (
+                      new XDeclaration("1.0", "utf-8", "yes"),
+                      new XElement
+                      (
+                       "response",
+                       new XElement("resultCode", 0),
+                       new XElement("resultMsg", "未能查询到患者出院小结!"),
+                       new XElement("resultContent")
+                      )
+                    );
+                    doc = new XmlDocument();
+                    doc.LoadXml(xDoc.ToString());
+                }
+                else
+                {
+                    doc = outHospitalBll.ConvertOutHospitalToXml(outHospital);
+                }
+            }
+            catch (Exception)
+            {
+                XDocument xDoc = new XDocument
+                  (
+                    new XDeclaration("1.0", "utf-8", "yes"),
+                    new XElement
+                    (
+                     "response",
+                     new XElement("resultCode", 0),
+                     new XElement("resultMsg", "系统出现内部错误!"),
+                     new XElement("resultContent")
+                    )
+                  );
+                doc = new XmlDocument();
+                doc.LoadXml(xDoc.ToString());
+                return doc;
+            }
+            return doc;
         }
 
         [WebMethod]

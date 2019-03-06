@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
-using WebServiceGradedDiagnosis.Common;
+using WebServiceGradedDiagnosis.DAL;
 using WebServiceGradedDiagnosis.Models;
 
 namespace WebServiceGradedDiagnosis.BLL
@@ -56,7 +56,7 @@ namespace WebServiceGradedDiagnosis.BLL
                        new XElement("mainChecked", outHospital.MainChecked),
                        new XElement("diagCourse", outHospital.DiagCourse),
                        new XElement("lvesymptom", outHospital.Lvesymptom),
-                       new XElement("lveda", outHospital.Lvediag),
+                       new XElement("lveda", outHospital.Lveda),
                        new XElement("diagresult", outHospital.Diagresult),
                        new XElement("attdoctNo", outHospital.AttdoctNo),
                        new XElement("attdoct", outHospital.Attdoct),
@@ -77,6 +77,13 @@ namespace WebServiceGradedDiagnosis.BLL
             xmlDoc.LoadXml(xDoc.ToString());
 
             return xmlDoc;
+        }
+
+        public OutHospital GetOutHospital(Request request)
+        {
+            OutHospitalDal outHospitalDal = new OutHospitalDal();
+
+            return outHospitalDal.GetOutHospital(request);
         }
     }
 }

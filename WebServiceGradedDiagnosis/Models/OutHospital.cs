@@ -37,6 +37,7 @@ namespace WebServiceGradedDiagnosis.Models
         public string MainChecked { get; set; }
         public string DiagCourse { get; set; }
         public string Lvesymptom { get; set; }
+        public string Lveda { get; set; }
         public string Diagresult { get; set; }
         public string AttdoctNo { get; set; }
         public string Attdoct { get; set; }

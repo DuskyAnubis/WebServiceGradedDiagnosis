@@ -85,6 +85,7 @@
     <Compile Include="Common\SqlCommon.cs" />
     <Compile Include="Common\SqlDataHelper.cs" />
     <Compile Include="DAL\IntoHospitalDal.cs" />
+    <Compile Include="DAL\OutHospitalDal.cs" />
     <Compile Include="DAL\PatientDal.cs" />
     <Compile Include="Models\IntoHospital.cs" />
     <Compile Include="Models\JCRecord.cs" />
