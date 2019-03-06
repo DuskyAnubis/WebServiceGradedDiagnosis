@@ -44,31 +44,51 @@ namespace WebServiceGradedDiagnosis
         public XmlDocument GetPatientInfoBySeachType(string requestXml)
         {
             XmlDocument doc;
-            Request request = RequestHelper.GetRequest(requestXml);
-            PatientBll patientBll = new PatientBll();
-            Patient patient = patientBll.GetPatient(request);
+            try
+            {
+                Request request = RequestHelper.GetRequest(requestXml);
+                PatientBll patientBll = new PatientBll();
+                Patient patient = patientBll.GetPatient(request);
 
-            if (patient is null)
+                if (patient is null)
+                {
+                    XDocument xDoc = new XDocument
+                    (
+                      new XDeclaration("1.0", "utf-8", "yes"),
+                      new XElement
+                      (
+                       "response",
+                       new XElement("resultCode", 0),
+                       new XElement("resultMsg", "未能查询到患者基本信息!"),
+                       new XElement("resultContent")
+                      )
+                    );
+                    doc = new XmlDocument();
+                    doc.LoadXml(xDoc.ToString());
+                }
+                else
+                {
+                    doc = patientBll.ConvertPatientToXml(patient);
+                }
+
+            }
+            catch (Exception ex)
             {
                 XDocument xDoc = new XDocument
-                (
-                  new XDeclaration("1.0", "utf-8", "yes"),
-                  new XElement
-                  (
-                   "response",
-                   new XElement("resultCode", 0),
-                   new XElement("resultMsg", "未能查询到患者基本信息!"),
-                   new XElement("resultContent")
-                  )
-                );
+                   (
+                     new XDeclaration("1.0", "utf-8", "yes"),
+                     new XElement
+                     (
+                      "response",
+                      new XElement("resultCode", 0),
+                      new XElement("resultMsg", "系统出现内部错误!"),
+                      new XElement("resultContent")
+                     )
+                   );
                 doc = new XmlDocument();
                 doc.LoadXml(xDoc.ToString());
+                return doc;
             }
-            else
-            {
-                doc = patientBll.ConvertPatientToXml(patient);
-            }
-
             return doc;
         }
 
