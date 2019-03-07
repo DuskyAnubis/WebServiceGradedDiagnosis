@@ -32,11 +32,12 @@ namespace WebServiceGradedDiagnosis.DAL
 
                 if (dtMzhj != null && dtMzhj.Rows.Count > 0)
                 {
-                    string sqlDep = $"select 科室Id, 科室代码,科室名称 from 科室 where 科室Id='{dtMzhj.Rows[0]["科室ID"].ToString()}'";
+                    
                     string sqlDoc = $"select id,医师代码,医师姓名,所在科室,挂号科室,划价号 from 医师代码 where 医师姓名='{dtMzhj.Rows[0]["医师"].ToString()}'";
-
-                    DataTable dtDep = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlDep).Tables[0];
                     DataTable dtDoc = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlDoc).Tables[0];
+
+                    string sqlDep = $"select 科室Id,科室代码,科室名称 from 科室 where 科室名称='{dtDoc.Rows[0]["所在科室"].ToString()}'";
+                    DataTable dtDep = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlDep).Tables[0];
 
                     Prescription prescription = new Prescription
                     {

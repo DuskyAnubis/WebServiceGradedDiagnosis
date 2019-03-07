@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
-using WebServiceGradedDiagnosis.Common;
+using WebServiceGradedDiagnosis.DAL;
 using WebServiceGradedDiagnosis.Models;
 
 namespace WebServiceGradedDiagnosis.BLL
@@ -22,7 +22,7 @@ namespace WebServiceGradedDiagnosis.BLL
                 (
                    "response",
                    new XElement("resultCode", 1),
-                   new XElement("resultMsg", "获取患者门诊处方成功!"),
+                   new XElement("resultMsg", "获取患者门诊病历成功!"),
                    new XElement
                    (
                        "resultContent",
@@ -83,6 +83,13 @@ namespace WebServiceGradedDiagnosis.BLL
             xmlDoc.LoadXml(xDoc.ToString());
 
             return xmlDoc;
+        }
+
+        public PatientMedicalRecord GetPatientMedicalRecord(Request request)
+        {
+            PatientMedicalRecordDal patientMedicalRecordDal = new PatientMedicalRecordDal();
+
+            return patientMedicalRecordDal.GetPatientMedicalRecord(request);
         }
     }
 }

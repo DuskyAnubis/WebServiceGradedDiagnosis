@@ -342,29 +342,58 @@ namespace WebServiceGradedDiagnosis
         [WebMethod]
         public XmlDocument GetPatientMedicalRecords(string requestXml)
         {
-            PatientMedicalRecordBll bll = new PatientMedicalRecordBll();
+            XmlDocument doc;
+            try
+            {
+                Request request = RequestHelper.GetRequest(requestXml);
+                PatientMedicalRecordBll patientMedicalRecordBll = new PatientMedicalRecordBll();
+                PatientMedicalRecord patientMedicalRecord = patientMedicalRecordBll.GetPatientMedicalRecord(request);
 
-            PatientMedicalRecord patientMedicalRecord = new PatientMedicalRecord
-            {
-                HospitalId = "",
-                PatientName = "患者"
-            };
+                if (patientMedicalRecord is null)
+                {
+                    XDocument xDoc = new XDocument
+                    (
+                      new XDeclaration("1.0", "utf-8", "yes"),
+                      new XElement
+                      (
+                       "response",
+                       new XElement("resultCode", 0),
+                       new XElement("resultMsg", "未能查询到患者门诊病历!"),
+                       new XElement("resultContent")
+                      )
+                    );
+                    doc = new XmlDocument();
+                    doc.LoadXml(xDoc.ToString());
+                }
+                else
+                {
+                    string startDate = patientMedicalRecord.ClinicTime + " 00:00:00";
+                    string endDate = patientMedicalRecord.ClinicTime + " 23:59:59";
 
-            PrescriptionDetail prescriptionDetail1 = new PrescriptionDetail
-            {
-                MedicineName = "药品1"
-            };
-            PrescriptionDetail PrescriptionDetail2 = new PrescriptionDetail
-            {
-                MedicineName = "药品2"
-            };
-            List<PrescriptionDetail> prescriptionDetails = new List<PrescriptionDetail>
-            {
-                prescriptionDetail1,
-                PrescriptionDetail2
-            };
+                    PrescriptionDetailBll prescriptionDetailBll = new PrescriptionDetailBll();
+                    List<PrescriptionDetail> prescriptionDetails = prescriptionDetailBll.GetPrescriptionDetails(patientMedicalRecord.MedicalCardNo, startDate, endDate);
 
-            return bll.ConvertPatientMedicalRecordToXml(patientMedicalRecord, prescriptionDetails);
+                    doc = patientMedicalRecordBll.ConvertPatientMedicalRecordToXml(patientMedicalRecord, prescriptionDetails);
+                }
+            }
+            catch (Exception)
+            {
+                XDocument xDoc = new XDocument
+                  (
+                    new XDeclaration("1.0", "utf-8", "yes"),
+                    new XElement
+                    (
+                     "response",
+                     new XElement("resultCode", 0),
+                     new XElement("resultMsg", "系统出现内部错误!"),
+                     new XElement("resultContent")
+                    )
+                  );
+                doc = new XmlDocument();
+                doc.LoadXml(xDoc.ToString());
+                return doc;
+            }
+            return doc;
         }
     }
 }
