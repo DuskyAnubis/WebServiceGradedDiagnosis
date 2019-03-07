@@ -135,7 +135,7 @@ namespace WebServiceGradedDiagnosis.DAL
                         patient.Other5 = null;
                         patient.DzjkNo = null;
 
-                        string sqlMzbl = $"select 卡号,门诊号,时间,过敏史,主诉,现病史,既往史,望闻问切,西医诊断,中医诊断,处理,体检,病程,建议 from MZ_BL where 卡号={request.OutPatientNo} order by 时间 desc";
+                        string sqlMzbl = $"select top 1 卡号,门诊号,时间,过敏史,主诉,现病史,既往史,望闻问切,西医诊断,中医诊断,处理,体检,病程,建议 from MZ_BL where 卡号={request.OutPatientNo} order by 时间 desc";
                         DataTable dtMzbl = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlMzbl).Tables[0];
                         if (dtMzbl != null && dtMzbl.Rows.Count > 0)
                         {

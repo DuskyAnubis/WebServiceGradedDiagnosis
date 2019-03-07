@@ -285,29 +285,58 @@ namespace WebServiceGradedDiagnosis
         [WebMethod]
         public XmlDocument GetPrescriptionInfo(string requestXml)
         {
-            PrescriptionBll bll = new PrescriptionBll();
+            XmlDocument doc;
+            try
+            {
+                Request request = RequestHelper.GetRequest(requestXml);
+                PrescriptionBll prescriptionBll = new PrescriptionBll();
+                Prescription prescription = prescriptionBll.GetPrescription(request);
 
-            Prescription prescription = new Prescription
-            {
-                HospitalId = "",
-                PatientName = "患者"
-            };
+                if (prescription is null)
+                {
+                    XDocument xDoc = new XDocument
+                    (
+                      new XDeclaration("1.0", "utf-8", "yes"),
+                      new XElement
+                      (
+                       "response",
+                       new XElement("resultCode", 0),
+                       new XElement("resultMsg", "未能查询到患者门诊处方!"),
+                       new XElement("resultContent")
+                      )
+                    );
+                    doc = new XmlDocument();
+                    doc.LoadXml(xDoc.ToString());
+                }
+                else
+                {
+                    string startDate = prescription.OrderDate + " 00:00:00";
+                    string endDate = prescription.OrderDate + " 23:59:59";
 
-            PrescriptionDetail prescriptionDetail1 = new PrescriptionDetail
-            {
-                MedicineName = "药品1"
-            };
-            PrescriptionDetail PrescriptionDetail2 = new PrescriptionDetail
-            {
-                MedicineName = "药品2"
-            };
-            List<PrescriptionDetail> prescriptionDetails = new List<PrescriptionDetail>
-            {
-                prescriptionDetail1,
-                PrescriptionDetail2
-            };
+                    PrescriptionDetailBll prescriptionDetailBll = new PrescriptionDetailBll();
+                    List<PrescriptionDetail> prescriptionDetails = prescriptionDetailBll.GetPrescriptionDetails(prescription.MedicalCardNo, startDate, endDate);
 
-            return bll.ConvertPrescriptionToXml(prescription, prescriptionDetails);
+                    doc = prescriptionBll.ConvertPrescriptionToXml(prescription, prescriptionDetails);
+                }
+            }
+            catch (Exception)
+            {
+                XDocument xDoc = new XDocument
+                  (
+                    new XDeclaration("1.0", "utf-8", "yes"),
+                    new XElement
+                    (
+                     "response",
+                     new XElement("resultCode", 0),
+                     new XElement("resultMsg", "系统出现内部错误!"),
+                     new XElement("resultContent")
+                    )
+                  );
+                doc = new XmlDocument();
+                doc.LoadXml(xDoc.ToString());
+                return doc;
+            }
+            return doc;
         }
 
         [WebMethod]

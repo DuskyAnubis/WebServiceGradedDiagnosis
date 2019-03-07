@@ -4,14 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
-using WebServiceGradedDiagnosis.Common;
+using WebServiceGradedDiagnosis.DAL;
 using WebServiceGradedDiagnosis.Models;
 
 namespace WebServiceGradedDiagnosis.BLL
 {
     public class PrescriptionBll
     {
-        public XmlDocument ConvertPrescriptionToXml(Prescription prescription,List<PrescriptionDetail> prescriptionDetails)
+        public XmlDocument ConvertPrescriptionToXml(Prescription prescription, List<PrescriptionDetail> prescriptionDetails)
         {
             XmlDocument xmlDoc = new XmlDocument();
 
@@ -78,6 +78,13 @@ namespace WebServiceGradedDiagnosis.BLL
             xmlDoc.LoadXml(xDoc.ToString());
 
             return xmlDoc;
+        }
+
+        public Prescription GetPrescription(Request request)
+        {
+            PrescriptionDal prescriptionDal = new PrescriptionDal();
+
+            return prescriptionDal.GetPrescription(request);
         }
     }
 }
