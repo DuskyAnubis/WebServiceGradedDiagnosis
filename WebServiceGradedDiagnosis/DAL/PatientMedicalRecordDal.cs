@@ -76,7 +76,6 @@ namespace WebServiceGradedDiagnosis.DAL
                 if (dtMzhj != null && dtMzhj.Rows.Count > 0)
                 {
                     string sqlDoc = $"select id,医师代码,医师姓名,所在科室,挂号科室,划价号 from 医师代码 where 医师姓名='{dtMzhj.Rows[0]["医师"].ToString()}'";
-
                     DataTable dtDoc = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlDoc).Tables[0];
 
                     patientMedicalRecord.ClinicDepartments = dtDoc != null && dtDoc.Rows.Count > 0 ? dtDoc.Rows[0]["所在科室"].ToString() : null;

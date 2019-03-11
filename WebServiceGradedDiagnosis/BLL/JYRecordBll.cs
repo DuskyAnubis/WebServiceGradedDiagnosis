@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
-using WebServiceGradedDiagnosis.Common;
+using WebServiceGradedDiagnosis.DAL;
 using WebServiceGradedDiagnosis.Models;
 
 namespace WebServiceGradedDiagnosis.BLL
@@ -73,5 +73,13 @@ namespace WebServiceGradedDiagnosis.BLL
 
             return xmlDoc;
         }
+
+        public List<JYRecord> GetJYRecords(Request request)
+        {
+            JYRecordDal jYRecordDal = new JYRecordDal();
+
+            return jYRecordDal.GetJYRecords(request);
+        }
+
     }
 }

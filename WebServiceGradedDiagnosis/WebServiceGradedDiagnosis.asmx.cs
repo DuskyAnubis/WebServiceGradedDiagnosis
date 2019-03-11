@@ -98,26 +98,52 @@ namespace WebServiceGradedDiagnosis
         [WebMethod]
         public XmlDocument GetJYList(string requestXml)
         {
-            JYRecordBll bll = new JYRecordBll();
+            XmlDocument doc;
+            try
+            {
+                Request request = RequestHelper.GetRequest(requestXml);
+                JYRecordBll jYRecordBll = new JYRecordBll();
+                List<JYRecord> jYRecords = jYRecordBll.GetJYRecords(request);
 
-            JYRecord jYRecord1 = new JYRecord
+                if (jYRecords == null || jYRecords.Count == 0)
+                {
+                    XDocument xDoc = new XDocument
+                    (
+                      new XDeclaration("1.0", "utf-8", "yes"),
+                      new XElement
+                      (
+                       "response",
+                       new XElement("resultCode", 0),
+                       new XElement("resultMsg", "未能查询到检验报告信息!"),
+                       new XElement("resultContent")
+                      )
+                    );
+                    doc = new XmlDocument();
+                    doc.LoadXml(xDoc.ToString());
+                }
+                else
+                {
+                    doc = jYRecordBll.ConvertJYRecordToXml(jYRecords);
+                }
+            }
+            catch (Exception)
             {
-                PatientName = "患者1"
-            };
-            JYRecord jYRecord2 = new JYRecord
-            {
-                PatientName = "患者2"
-            };
-            JYRecord jYRecord3 = new JYRecord
-            {
-                PatientName = "患者3"
-            };
-            List<JYRecord> jCRecords = new List<JYRecord>
-            {
-                jYRecord1,jYRecord2,jYRecord3
-            };
-
-            return bll.ConvertJYRecordToXml(jCRecords);
+                XDocument xDoc = new XDocument
+                  (
+                    new XDeclaration("1.0", "utf-8", "yes"),
+                    new XElement
+                    (
+                     "response",
+                     new XElement("resultCode", 0),
+                     new XElement("resultMsg", "系统出现内部错误!"),
+                     new XElement("resultContent")
+                    )
+                  );
+                doc = new XmlDocument();
+                doc.LoadXml(xDoc.ToString());
+                return doc;
+            }
+            return doc;
         }
 
         [WebMethod]
