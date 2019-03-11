@@ -167,8 +167,6 @@ namespace WebServiceGradedDiagnosis.DAL
                     {
                         return null;
                     }
-
-
                 }
                 else
                 {
