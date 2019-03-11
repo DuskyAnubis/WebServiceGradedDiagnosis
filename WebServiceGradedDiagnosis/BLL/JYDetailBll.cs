@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
-using WebServiceGradedDiagnosis.Common;
+using WebServiceGradedDiagnosis.DAL;
 using WebServiceGradedDiagnosis.Models;
 
 namespace WebServiceGradedDiagnosis.BLL
@@ -22,7 +22,7 @@ namespace WebServiceGradedDiagnosis.BLL
              (
                  "response",
                  new XElement("resultCode", 1),
-                 new XElement("resultMsg", "获取患者检验记录明细成功!"),
+                 new XElement("resultMsg", "获取患者检验记录详情成功!"),
                  new XElement
                  (
                      "resultContent",
@@ -51,6 +51,13 @@ namespace WebServiceGradedDiagnosis.BLL
             xmlDoc.LoadXml(xDoc.ToString());
 
             return xmlDoc;
+        }
+
+        public List<JYDetail> GetJYDetails(JYDetailRequest request)
+        {
+            JYDetailDal jYDetailDal = new JYDetailDal();
+
+            return jYDetailDal.GetJYDetails(request);
         }
     }
 }
