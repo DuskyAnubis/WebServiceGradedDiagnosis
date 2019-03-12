@@ -88,6 +88,7 @@
     <Compile Include="DAL\JYDetailDal.cs" />
     <Compile Include="DAL\JYRecordDal.cs" />
     <Compile Include="DAL\OutHospitalDal.cs" />
+    <Compile Include="DAL\PatientChargedDal.cs" />
     <Compile Include="DAL\PatientDal.cs" />
     <Compile Include="DAL\PatientMedicalRecordDal.cs" />
     <Compile Include="DAL\PrescriptionDal.cs" />
