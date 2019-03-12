@@ -274,13 +274,28 @@ namespace WebServiceGradedDiagnosis
         {
             PatientChargedBll bll = new PatientChargedBll();
 
-            PatientCharged patientCharged = new PatientCharged
+            PatientCharged patientCharged1 = new PatientCharged
             {
                 HospitalId = "",
-                PatientName = "患者"
+                PatientName = "患者1"
+            };
+            PatientCharged patientCharged2 = new PatientCharged
+            {
+                HospitalId = "",
+                PatientName = "患者2"
+            };
+            PatientCharged patientCharged3 = new PatientCharged
+            {
+                HospitalId = "",
+                PatientName = "患者3"
             };
 
-            return bll.ConvertPatientChargedToXml(patientCharged);
+            List<PatientCharged> patientChargeds = new List<PatientCharged>
+            {
+                patientCharged1,patientCharged2,patientCharged3
+            };
+
+            return bll.ConvertPatientChargedToXml(patientChargeds);
         }
 
         [WebMethod]

@@ -11,7 +11,7 @@ namespace WebServiceGradedDiagnosis.BLL
 {
     public class PatientChargedBll
     {
-        public XmlDocument ConvertPatientChargedToXml(PatientCharged patientCharged)
+        public XmlDocument ConvertPatientChargedToXml(List<PatientCharged> patientChargeds)
         {
             XmlDocument xmlDoc = new XmlDocument();
 
@@ -23,7 +23,8 @@ namespace WebServiceGradedDiagnosis.BLL
                    "response",
                    new XElement("resultCode", 1),
                    new XElement("resultMsg", "获取患者医嘱信息成功!"),
-                   new XElement
+                   from patientCharged in patientChargeds
+                   select new XElement
                    (
                        "resultContent",
                        new XElement("hospitalId", patientCharged.HospitalId),
