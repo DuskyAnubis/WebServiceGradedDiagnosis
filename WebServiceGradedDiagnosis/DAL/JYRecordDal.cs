@@ -159,9 +159,7 @@ namespace WebServiceGradedDiagnosis.DAL
                             };
                             jYRecords.Add(jYRecord);
                         }
-
                         return jYRecords;
-
                     }
                     else
                     {
