@@ -272,30 +272,52 @@ namespace WebServiceGradedDiagnosis
         [WebMethod]
         public XmlDocument GetIPatientCharged(string requestXml)
         {
-            PatientChargedBll bll = new PatientChargedBll();
+            XmlDocument doc;
+            try
+            {
+                Request request = RequestHelper.GetRequest(requestXml);
+                PatientChargedBll patientChargedBll = new PatientChargedBll();
+                List<PatientCharged> patientChargeds = patientChargedBll.GetPatientChargeds(request);
 
-            PatientCharged patientCharged1 = new PatientCharged
+                if (patientChargeds == null || patientChargeds.Count == 0)
+                {
+                    XDocument xDoc = new XDocument
+                    (
+                      new XDeclaration("1.0", "utf-8", "yes"),
+                      new XElement
+                      (
+                       "response",
+                       new XElement("resultCode", 0),
+                       new XElement("resultMsg", "未能查询到患者医嘱信息!"),
+                       new XElement("resultContent")
+                      )
+                    );
+                    doc = new XmlDocument();
+                    doc.LoadXml(xDoc.ToString());
+                }
+                else
+                {
+                    doc = patientChargedBll.ConvertPatientChargedToXml(patientChargeds);
+                }
+            }
+            catch (Exception ex)
             {
-                HospitalId = "",
-                PatientName = "患者1"
-            };
-            PatientCharged patientCharged2 = new PatientCharged
-            {
-                HospitalId = "",
-                PatientName = "患者2"
-            };
-            PatientCharged patientCharged3 = new PatientCharged
-            {
-                HospitalId = "",
-                PatientName = "患者3"
-            };
-
-            List<PatientCharged> patientChargeds = new List<PatientCharged>
-            {
-                patientCharged1,patientCharged2,patientCharged3
-            };
-
-            return bll.ConvertPatientChargedToXml(patientChargeds);
+                XDocument xDoc = new XDocument
+                  (
+                    new XDeclaration("1.0", "utf-8", "yes"),
+                    new XElement
+                    (
+                     "response",
+                     new XElement("resultCode", 0),
+                     new XElement("resultMsg", "系统出现内部错误!"),
+                     new XElement("resultContent")
+                    )
+                  );
+                doc = new XmlDocument();
+                doc.LoadXml(xDoc.ToString());
+                return doc;
+            }
+            return doc;
         }
 
         [WebMethod]

@@ -17,11 +17,11 @@ namespace WebServiceGradedDiagnosis.DAL
             string sqlBak = "";
             if (string.IsNullOrEmpty(request.IdentCard))
             {
-                sqlBak = $"select top 1 * from(select 病人编号,住院号,姓名,入院日期,医保类型,性别,身份证号,年龄,出生日期,民族,婚否,职业,电话,家庭住址,联系人,联系人地址,联系电话,关系,入院诊断,病情,确诊诊断,出院日期,治疗情况,住院天数,医师代码,科室,病室,床位 from ZY_病案库 where 住院号<>'0') as BAK where 出院日期 is not null and 病人编号='{request.PID}' or 住院号='{request.InPatientNo}' order by 入院日期 desc";
+                sqlBak = $"select top 1 * from(select 病人编号,住院号,姓名,入院日期,医保类型,性别,身份证号,年龄,出生日期,民族,婚否,职业,电话,家庭住址,联系人,联系人地址,联系电话,关系,入院诊断,病情,确诊诊断,出院日期,治疗情况,住院天数,医师代码,科室,病室,床位 from ZY_病案库 where 住院号<>'0') as BAK where 出院日期 is not null and (病人编号='{request.PID}' or 住院号='{request.InPatientNo}') order by 入院日期 desc";
             }
             else
             {
-                sqlBak = $"select top 1 * from(select 病人编号,住院号,姓名,入院日期,医保类型,性别,身份证号,年龄,出生日期,民族,婚否,职业,电话,家庭住址,联系人,联系人地址,联系电话,关系,入院诊断,病情,确诊诊断,出院日期,治疗情况,住院天数,医师代码,科室,病室,床位 from ZY_病案库 where 住院号<>'0') as BAK where 出院日期 is not null and 病人编号='{request.PID}' or 住院号='{request.InPatientNo}' or 身份证号='{request.IdentCard}' order by 入院日期 desc";
+                sqlBak = $"select top 1 * from(select 病人编号,住院号,姓名,入院日期,医保类型,性别,身份证号,年龄,出生日期,民族,婚否,职业,电话,家庭住址,联系人,联系人地址,联系电话,关系,入院诊断,病情,确诊诊断,出院日期,治疗情况,住院天数,医师代码,科室,病室,床位 from ZY_病案库 where 住院号<>'0') as BAK where 出院日期 is not null and (病人编号='{request.PID}' or 住院号='{request.InPatientNo}' or 身份证号='{request.IdentCard}') order by 入院日期 desc";
             }
             DataTable dtBak = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlBak).Tables[0];
 
