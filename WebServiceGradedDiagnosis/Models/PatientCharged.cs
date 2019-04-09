@@ -11,24 +11,14 @@ namespace WebServiceGradedDiagnosis.Models
         public string HospitalName { get; set; }
         public string InpatientNo { get; set; }
         public string MedicalCardNo { get; set; }
-        public string SeachType { get; set; }
         public string PatientName { get; set; }
-        public string PatientId { get; set; }
         public string PatientAge { get; set; }
-        public string GenderCode { get; set; }
         public string GenderValue { get; set; }
         public string IdentCard { get; set; }
-        public string OutPatientNo { get; set; }
         public string Departments { get; set; }
         public string DAmemo { get; set; }
         public string Doctor { get; set; }
         public string Nurse { get; set; }
-        public string SickWordName { get; set; }
-        public string MedID { get; set; }
-        public string ExecdepNo { get; set; }
-        public string Promdoct { get; set; }
-        public string PromdepNo { get; set; }
-        public string ExecdoctNo { get; set; }
         public string DAtype { get; set; }
         public string Promdate { get; set; }
         public string Execdate { get; set; }
