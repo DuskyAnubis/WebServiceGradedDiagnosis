@@ -12,12 +12,12 @@ namespace WebServiceGradedDiagnosis.Models
         public string HospitalId { get; set; }
         public string HospitalName { get; set; }
         public string GenderValue { get; set; }
-        public int PatientAge { get; set; }
+        public string PatientAge { get; set; }
         public string IdentCard { get; set; }
         public string Birthday { get; set; }
         public string Nation { get; set; }
-        public string PatientStature { get; set; }
-        public string PatientWeight { get; set; }
+        public int PatientStature { get; set; }
+        public int PatientWeight { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
         public string Contacts { get; set; }
