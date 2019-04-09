@@ -20,9 +20,9 @@ namespace WebServiceGradedDiagnosis.Common
             {
                 HospitalId = xdoc.Element("request").Element("hospitalId").Value,
                 IdentCard = xdoc.Element("request").Element("identCard").Value,
-                InPatientNo = xdoc.Element("request").Element("inpatientNo").Value,
+                InPatientNo = xdoc.Element("request").Element("inPatientNo").Value,
                 OutPatientNo = xdoc.Element("request").Element("outPatientNo").Value,
-                PID = xdoc.Element("request").Element("PID").Value,
+                PID = xdoc.Element("request").Element("pid").Value,
                 DzjkNo = xdoc.Element("request").Element("dzjkNo").Value,
                 Other1 = xdoc.Element("request").Element("other1").Value,
                 Other2 = xdoc.Element("request").Element("other2").Value
@@ -38,7 +38,7 @@ namespace WebServiceGradedDiagnosis.Common
             JYDetailRequest request = new JYDetailRequest
             {
                 HospitalId = xdoc.Element("request").Element("hospitalId").Value,
-                ReqId = xdoc.Element("request").Element("ReqId").Value,
+                ReqId = xdoc.Element("request").Element("reqId").Value,
             };
 
             return request;
