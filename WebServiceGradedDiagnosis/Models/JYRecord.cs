@@ -10,9 +10,6 @@ namespace WebServiceGradedDiagnosis.Models
         public string ReqId { get; set; }
         public string ItemClass { get; set; }
         public string ItemSubClass { get; set; }
-        public string DiagnoseDoc { get; set; }
-        public string SendDoc { get; set; }
-        public string AuditDoc { get; set; }
         public string Dept { get; set; }
         public string CheckType { get; set; }
         public string CheckTime { get; set; }
