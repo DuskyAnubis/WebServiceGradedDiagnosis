@@ -16,15 +16,7 @@ namespace WebServiceGradedDiagnosis.DAL
         {
             if (string.IsNullOrEmpty(request.OutPatientNo))
             {
-                string sqlBak = "";
-                if (string.IsNullOrEmpty(request.IdentCard))
-                {
-                    sqlBak = $"select top 1 * from(select 病人编号,住院号,姓名,入院日期,医保类型,性别,身份证号,年龄,出生日期,民族,婚否,职业,电话,家庭住址,联系人,联系人地址,联系电话,关系,入院诊断,确诊诊断,出院日期,医师代码,科室,病室,床位 from ZY_病案库 where 住院号<>'0') as BAK where  病人编号='{request.PID}' or 住院号='{request.InPatientNo}' order by 入院日期 desc";
-                }
-                else
-                {
-                    sqlBak = $"select top 1 * from(select 病人编号,住院号,姓名,入院日期,医保类型,性别,身份证号,年龄,出生日期,民族,婚否,职业,电话,家庭住址,联系人,联系人地址,联系电话,关系,入院诊断,确诊诊断,出院日期,医师代码,科室,病室,床位 from ZY_病案库 where 住院号<>'0') as BAK where  病人编号='{request.PID}' or 住院号='{request.InPatientNo}' or 身份证号='{request.IdentCard}' order by 入院日期 desc";
-                }
+                string sqlBak = $"select top 1 * from(select 病人编号,住院号,姓名,入院日期,医保类型,性别,身份证号,年龄,出生日期,民族,婚否,职业,电话,家庭住址,联系人,联系人地址,联系电话,关系,入院诊断,确诊诊断,出院日期,医师代码,科室,病室,床位 from ZY_病案库 where 住院号<>'0') as BAK where 住院号='{request.InPatientNo}' and 身份证号='{request.IdentCard}' order by 入院日期 desc";
 
                 DataTable dtBak = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlBak).Tables[0];
 
@@ -50,26 +42,27 @@ namespace WebServiceGradedDiagnosis.DAL
                             {
                                 ReqId = dtJy.Rows[i]["sqh"].ToString(),
                                 ItemClass = dtJy.Rows[i]["yblx"].ToString(),
-                                ItemSubClass = null,
+                                ItemSubClass = "暂无",
                                 DiagnoseDoc = dtJy.Rows[i]["sqys"].ToString(),
                                 SendDoc = dtJy.Rows[i]["sqys"].ToString(),
                                 AuditDoc = dtJy.Rows[i]["sqys"].ToString(),
-                                DeptCode = dtDep != null && dtDep.Rows.Count > 0 ? dtDep.Rows[0]["科室代码"].ToString() : null,
+                                DeptCode = dtDep != null && dtDep.Rows.Count > 0 ? dtDep.Rows[0]["科室代码"].ToString() : "暂无",
                                 Dept = dtJy.Rows[i]["ksdh"].ToString(),
                                 HosName = ConfigurationManager.AppSettings["HospitalName"],
                                 IsKey = "0",
+                                CheckType = "1",
                                 CheckTime = Convert.ToDateTime(dtJy.Rows[i]["zxsj"]).ToString("yyyy-MM-dd"),
                                 ReportTime = Convert.ToDateTime(dtJy.Rows[i]["zxsj"]).ToString("yyyy-MM-dd"),
                                 ReceiveTime = Convert.ToDateTime(dtJy.Rows[i]["sqsj"]).ToString("yyyy-MM-dd"),
                                 CollectTime = Convert.ToDateTime(dtJy.Rows[i]["sqsj"]).ToString("yyyy-MM-dd"),
-                                Diagnostic = dtPatBaseInf != null && dtPatBaseInf.Rows.Count > 0 ? dtPatBaseInf.Rows[0]["Diagnosis1"].ToString() : null,
-                                State = 0,
+                                Diagnostic = dtPatBaseInf != null && dtPatBaseInf.Rows.Count > 0 ? dtPatBaseInf.Rows[0]["Diagnosis1"].ToString() : "暂无",
+                                State = "0",
                                 PatientName = dtBak.Rows[0]["姓名"].ToString(),
-                                GenderValue = dtBak.Rows[0]["性别"].ToString() == "男" ? "0" : "1",
-                                PatientAge = DateTime.Now.Year - Convert.ToDateTime(dtBak.Rows[0]["出生日期"]).Year,
-                                AppDiagonse = dtPatBaseInf != null && dtPatBaseInf.Rows.Count > 0 ? dtPatBaseInf.Rows[0]["Diagnosis1"].ToString() : null,
-                                ChiefComplaint = dtPatBaseInf != null && dtPatBaseInf.Rows.Count > 0 ? dtPatBaseInf.Rows[0]["MainNarrative"].ToString() : null,
-                                MedicalHistory = null,
+                                GenderValue = dtBak.Rows[0]["性别"].ToString() == "男" ? "1" : "0",
+                                PatientAge = (DateTime.Now.Year - Convert.ToDateTime(dtBak.Rows[0]["出生日期"]).Year).ToString(),
+                                AppDiagonse = dtPatBaseInf != null && dtPatBaseInf.Rows.Count > 0 ? dtPatBaseInf.Rows[0]["Diagnosis1"].ToString() : "暂无",
+                                ChiefComplaint = dtPatBaseInf != null && dtPatBaseInf.Rows.Count > 0 ? dtPatBaseInf.Rows[0]["MainNarrative"].ToString() : "暂无",
+                                MedicalHistory = "暂无",
                                 CheckPurpose = dtJy.Rows[i]["sqxmmc"].ToString(),
                                 Other1 = null,
                                 Other2 = null,
@@ -78,7 +71,7 @@ namespace WebServiceGradedDiagnosis.DAL
                                 Other5 = null,
                                 HospitalId = ConfigurationManager.AppSettings["HospitalId"],
                                 IdentCard = dtBak.Rows[0]["身份证号"].ToString(),
-                                OutPatientNo = null,
+                                OutPatientNo = "暂无",
                                 InpatientNo = dtBak.Rows[0]["住院号"].ToString(),
                                 DzjkNo = null
                             };
@@ -125,7 +118,7 @@ namespace WebServiceGradedDiagnosis.DAL
                             {
                                 ReqId = dtJy.Rows[i]["sqh"].ToString(),
                                 ItemClass = dtJy.Rows[i]["yblx"].ToString(),
-                                ItemSubClass = null,
+                                ItemSubClass = "暂无",
                                 DiagnoseDoc = dtJy.Rows[i]["sqys"].ToString(),
                                 SendDoc = dtJy.Rows[i]["sqys"].ToString(),
                                 AuditDoc = dtJy.Rows[i]["sqys"].ToString(),
@@ -133,18 +126,19 @@ namespace WebServiceGradedDiagnosis.DAL
                                 Dept = dtJy.Rows[i]["ksdh"].ToString(),
                                 HosName = ConfigurationManager.AppSettings["HospitalName"],
                                 IsKey = "0",
+                                CheckType="0",
                                 CheckTime = Convert.ToDateTime(dtJy.Rows[i]["zxsj"]).ToString("yyyy-MM-dd"),
                                 ReportTime = Convert.ToDateTime(dtJy.Rows[i]["zxsj"]).ToString("yyyy-MM-dd"),
                                 ReceiveTime = Convert.ToDateTime(dtJy.Rows[i]["sqsj"]).ToString("yyyy-MM-dd"),
                                 CollectTime = Convert.ToDateTime(dtJy.Rows[i]["sqsj"]).ToString("yyyy-MM-dd"),
-                                Diagnostic = dtMzbl != null && dtMzbl.Rows.Count > 0 ? dtMzbl.Rows[0]["西医诊断"].ToString() : null,
-                                State = 0,
+                                Diagnostic = dtMzbl != null && dtMzbl.Rows.Count > 0 ? dtMzbl.Rows[0]["西医诊断"].ToString() : "暂无",
+                                State = "0",
                                 PatientName = dtGh.Rows[0]["姓名"].ToString(),
-                                GenderValue = dtGh.Rows[0]["性别"].ToString() == "男" ? "0" : "1",
-                                PatientAge = Convert.ToInt32(dtGh.Rows[0]["年龄"]),
-                                AppDiagonse = dtMzbl != null && dtMzbl.Rows.Count > 0 ? dtMzbl.Rows[0]["西医诊断"].ToString() : null,
-                                ChiefComplaint = dtMzbl != null && dtMzbl.Rows.Count > 0 ? dtMzbl.Rows[0]["主诉"].ToString() : null,
-                                MedicalHistory = null,
+                                GenderValue = dtGh.Rows[0]["性别"].ToString() == "男" ? "1" : "0",
+                                PatientAge = dtGh.Rows[0]["年龄"].ToString(),
+                                AppDiagonse = dtMzbl != null && dtMzbl.Rows.Count > 0 ? dtMzbl.Rows[0]["西医诊断"].ToString() : "暂无",
+                                ChiefComplaint = dtMzbl != null && dtMzbl.Rows.Count > 0 ? dtMzbl.Rows[0]["主诉"].ToString() : "暂无",
+                                MedicalHistory = "暂无",
                                 CheckPurpose = dtJy.Rows[i]["sqxmmc"].ToString(),
                                 Other1 = null,
                                 Other2 = null,
@@ -152,9 +146,9 @@ namespace WebServiceGradedDiagnosis.DAL
                                 Other4 = null,
                                 Other5 = null,
                                 HospitalId = ConfigurationManager.AppSettings["HospitalId"],
-                                IdentCard = null,
+                                IdentCard = dtGh.Rows[0]["身份证"].ToString(),
                                 OutPatientNo = dtMzsf.Rows[0]["卡号"].ToString(),
-                                InpatientNo = null,
+                                InpatientNo = "暂无",
                                 DzjkNo = null
                             };
                             jYRecords.Add(jYRecord);

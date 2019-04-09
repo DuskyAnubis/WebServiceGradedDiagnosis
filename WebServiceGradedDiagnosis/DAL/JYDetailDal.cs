@@ -42,16 +42,16 @@ namespace WebServiceGradedDiagnosis.DAL
                     switch (dtJyDetail.Rows[i]["resultflag"].ToString())
                     {
                         case "M":
-                            jYDetail.Indicator = 0;
+                            jYDetail.Indicator = "0";
                             break;
                         case "L":
-                            jYDetail.Indicator = 1;
+                            jYDetail.Indicator = "1";
                             break;
                         case "H":
-                            jYDetail.Indicator = 2;
+                            jYDetail.Indicator = "2";
                             break;
                         default:
-                            jYDetail.Indicator = 3;
+                            jYDetail.Indicator = "3";
                             break;
                     }
 

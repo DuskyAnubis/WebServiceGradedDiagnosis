@@ -14,15 +14,16 @@ namespace WebServiceGradedDiagnosis.Models
         public string SendDoc { get; set; }
         public string AuditDoc { get; set; }
         public string Dept { get; set; }
+        public string CheckType { get; set; }
         public string CheckTime { get; set; }
         public string ReportTime { get; set; }
         public string ReceiveTime { get; set; }
         public string CollectTime { get; set; }
         public string Diagnostic { get; set; }
-        public int State { get; set; }
+        public string State { get; set; }
         public string PatientName { get; set; }
         public string GenderValue { get; set; }
-        public int PatientAge { get; set; }
+        public string PatientAge { get; set; }
         public string AppDiagonse { get; set; }
         public string ChiefComplaint { get; set; }
         public string MedicalHistory { get; set; }
