@@ -30,40 +30,27 @@ namespace WebServiceGradedDiagnosis.DAL
                     HospitalName = ConfigurationManager.AppSettings["HospitalName"],
                     MedicalCardNo = dtMzsf.Rows[0]["卡号"].ToString(),
                     OutPatientNo = dtMzsf.Rows[0]["卡号"].ToString(),
-                    HealthFileNo = null,
-                    PatientId = dtMzsf.Rows[0]["卡号"].ToString(),
                     PatientName = dtGh.Rows[0]["姓名"].ToString(),
-                    IdentCard = null,
-                    GenderCode = dtGh.Rows[0]["性别"].ToString() == "男" ? "0" : "1",
-                    GenderValue = dtGh.Rows[0]["性别"].ToString() == "男" ? "0" : "1",
+                    IdentCard = dtGh.Rows[0]["身份证"].ToString(),
+                    GenderValue = dtGh.Rows[0]["性别"].ToString() == "男" ? "1" : "0",
                     PatientAge = dtGh.Rows[0]["年龄"].ToString(),
-                    Nation = dtGh.Rows[0]["民族"].ToString(),
-                    Profession = dtGh.Rows[0]["职业"].ToString(),
-                    MaritalStatus = dtGh.Rows[0]["婚姻"].ToString(),
-                    Phone = dtGh.Rows[0]["电话"].ToString(),
-                    Address = dtGh.Rows[0]["通信地址"].ToString(),
                     ClinicTime = Convert.ToDateTime(dtMzsf.Rows[0]["日期"]).ToString("yyyy-MM-dd"),
-                    ClinicDepartments = null,
-                    ActionInChief = dtMzbl.Rows[0]["主诉"].ToString(),
-                    HisPresentIllness = dtMzbl.Rows[0]["现病史"].ToString(),
-                    PastHistory = null,
-                    PersonalHistory = null,
-                    AllergicHistory = null,
-                    FamilyHistory = null,
-                    PhysicalExamination = null,
-                    AuxiliaryExaminations = null,
-                    PreliminaryJudgment = dtMzbl.Rows[0]["西医诊断"].ToString(),
-                    Process = null,
-                    Direction = null,
-                    DepartureTime = Convert.ToDateTime(dtMzsf.Rows[0]["日期"]).ToString("yyyy-MM-dd"),
-                    Doctor = null,
+                    ClinicDepartments = "暂无",
+                    ActionInChief = dtMzbl != null && dtMzbl.Rows.Count > 0 ? dtMzbl.Rows[0]["主诉"].ToString() : "暂无",
+                    HisPresentIllness = dtMzbl != null && dtMzbl.Rows.Count > 0 ? dtMzbl.Rows[0]["现病史"].ToString() : "暂无",
+                    PastHistory = "暂无",
+                    PersonalHistory = "暂无",
+                    AllergicHistory = "暂无",
+                    FamilyHistory = "暂无",
+                    PhysicalExamination = "暂无",
+                    AuxiliaryExaminations = "暂无",
+                    PreliminaryJudgment = dtMzbl != null && dtMzbl.Rows.Count > 0 ? dtMzbl.Rows[0]["西医诊断"].ToString() : "暂无",
                     Other1 = null,
                     Other2 = null,
                     Other3 = null,
                     Other4 = null,
                     Other5 = null,
                     PID = dtMzsf.Rows[0]["卡号"].ToString(),
-                    InpatientNo = null,
                     DzjkNo = null
                 };
 
@@ -79,7 +66,6 @@ namespace WebServiceGradedDiagnosis.DAL
                     DataTable dtDoc = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlDoc).Tables[0];
 
                     patientMedicalRecord.ClinicDepartments = dtDoc != null && dtDoc.Rows.Count > 0 ? dtDoc.Rows[0]["所在科室"].ToString() : null;
-                    patientMedicalRecord.Doctor = dtDoc != null && dtDoc.Rows.Count > 0 ? dtDoc.Rows[0]["医师姓名"].ToString() : null;
                 }
 
                 return patientMedicalRecord;

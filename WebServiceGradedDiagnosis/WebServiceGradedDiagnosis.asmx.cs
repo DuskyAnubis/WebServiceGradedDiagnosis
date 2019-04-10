@@ -456,13 +456,7 @@ namespace WebServiceGradedDiagnosis
                 }
                 else
                 {
-                    string startDate = patientMedicalRecord.ClinicTime + " 00:00:00";
-                    string endDate = patientMedicalRecord.ClinicTime + " 23:59:59";
-
-                    PrescriptionDetailBll prescriptionDetailBll = new PrescriptionDetailBll();
-                    List<PrescriptionDetail> prescriptionDetails = prescriptionDetailBll.GetPrescriptionDetails(patientMedicalRecord.MedicalCardNo, startDate, endDate);
-
-                    doc = patientMedicalRecordBll.ConvertPatientMedicalRecordToXml(patientMedicalRecord, prescriptionDetails);
+                    doc = patientMedicalRecordBll.ConvertPatientMedicalRecordToXml(patientMedicalRecord);
                 }
             }
             catch (Exception)
