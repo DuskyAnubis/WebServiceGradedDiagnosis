@@ -32,46 +32,28 @@ namespace WebServiceGradedDiagnosis.DAL
 
                 if (dtMzhj != null && dtMzhj.Rows.Count > 0)
                 {
-                    
-                    string sqlDoc = $"select id,医师代码,医师姓名,所在科室,挂号科室,划价号 from 医师代码 where 医师姓名='{dtMzhj.Rows[0]["医师"].ToString()}'";
-                    DataTable dtDoc = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlDoc).Tables[0];
-
-                    string sqlDep = $"select 科室Id,科室代码,科室名称 from 科室 where 科室名称='{dtDoc.Rows[0]["所在科室"].ToString()}'";
-                    DataTable dtDep = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlDep).Tables[0];
-
                     Prescription prescription = new Prescription
                     {
                         MedicalCardNo = dtMzsf.Rows[0]["卡号"].ToString(),
                         OutPatientNo = dtMzsf.Rows[0]["卡号"].ToString(),
-                        PatientId = dtMzsf.Rows[0]["卡号"].ToString(),
                         PatientName = dtGh.Rows[0]["姓名"].ToString(),
                         PatientAge = dtGh.Rows[0]["年龄"].ToString(),
-                        IdentCard = null,
-                        GenderCode = dtGh.Rows[0]["性别"].ToString() == "男" ? "0" : "1",
-                        GenderValue = dtGh.Rows[0]["性别"].ToString() == "男" ? "0" : "1",
-                        Phone = dtGh.Rows[0]["电话"].ToString(),
-                        ClinicalDiagnosis = dtMzbl != null && dtMzbl.Rows.Count > 0 ? dtMzbl.Rows[0]["西医诊断"].ToString() : null,
+                        IdentCard = dtGh.Rows[0]["身份证"].ToString(),
+                        GenderValue = dtGh.Rows[0]["性别"].ToString() == "男" ? "1" : "0",
+                        ClinicalDiagnosis = dtMzbl != null && dtMzbl.Rows.Count > 0 ? dtMzbl.Rows[0]["西医诊断"].ToString() : "暂无",
                         HospitalId = ConfigurationManager.AppSettings["HospitalId"],
                         HospitalName = ConfigurationManager.AppSettings["HospitalName"],
                         OrderDate = Convert.ToDateTime(dtMzsf.Rows[0]["日期"]).ToString("yyyy-MM-dd"),
                         DoctorDiagnosis = dtMzbl != null && dtMzbl.Rows.Count > 0 ? dtMzbl.Rows[0]["西医诊断"].ToString() : null,
-                        PrescripTid = "1",
-                        PrescripTname = "门诊",
-                        PrescripId = dtMzhj.Rows[0]["发票流水号"].ToString(),
                         PrescripName = "门诊处方",
                         PrescripTypeId = dtMzhj.Rows[0]["发票流水号"].ToString() == "西药" ? "2" : "1",
                         PrescripTypeName = dtMzhj.Rows[0]["发票流水号"].ToString() == "西药" ? "西药" : "中药",
-                        DeptId = dtDep != null && dtDep.Rows.Count > 0 ? dtDep.Rows[0]["科室代码"].ToString() : null,
-                        DeptName = dtDep != null && dtDep.Rows.Count > 0 ? dtDep.Rows[0]["科室名称"].ToString() : null,
-                        DoctorId = dtDoc != null && dtDoc.Rows.Count > 0 ? dtDoc.Rows[0]["医师代码"].ToString() : null,
-                        DoctorName = dtDoc != null && dtDoc.Rows.Count > 0 ? dtDoc.Rows[0]["医师姓名"].ToString() : null,
                         Other1 = null,
                         Other2 = null,
                         Other3 = null,
                         Other4 = null,
                         Other5 = null,
                         PID = dtMzsf.Rows[0]["卡号"].ToString(),
-                        InpatientNo = null,
                         DzjkNo = null
                     };
                     return prescription;
