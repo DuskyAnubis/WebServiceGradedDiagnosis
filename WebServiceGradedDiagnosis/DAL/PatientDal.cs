@@ -89,7 +89,7 @@ namespace WebServiceGradedDiagnosis.DAL
                     Nation = dtBak.Rows[0]["民族"].ToString(),
                     PatientStature = 0,
                     PatientWeight = 0,
-                    Phone = dtBak.Rows[0]["电话"].ToString(),
+                    Phone = dtBak.Rows[0]["电话"].ToString() != "" ? dtBak.Rows[0]["电话"].ToString() : "暂无",
                     Address = dtBak.Rows[0]["家庭住址"].ToString(),
                     Contacts = dtBak.Rows[0]["联系人"].ToString(),
                     RelationShip = dtBak.Rows[0]["关系"].ToString(),
@@ -101,8 +101,8 @@ namespace WebServiceGradedDiagnosis.DAL
                     InsuranceNo = "暂无",
                     DeptCode = dtDep != null && dtDep.Rows.Count > 0 ? dtDep.Rows[0]["科室代码"].ToString() : "暂无",
                     DeptName = dtBak.Rows[0]["科室"].ToString(),
-                    AppDiagonse = dtPatBaseInf != null && dtPatBaseInf.Rows.Count > 0 ? dtPatBaseInf.Rows[0]["Diagnosis1"].ToString() : "暂无",
-                    ChiefComplaint = dtPatBaseInf != null && dtPatBaseInf.Rows.Count > 0 ? dtPatBaseInf.Rows[0]["MainNarrative"].ToString() : "暂无",
+                    AppDiagonse = dtPatBaseInf != null && dtPatBaseInf.Rows.Count > 0 && dtPatBaseInf.Rows[0]["Diagnosis1"].ToString() != "" ? dtPatBaseInf.Rows[0]["Diagnosis1"].ToString() : "暂无",
+                    ChiefComplaint = dtPatBaseInf != null && dtPatBaseInf.Rows.Count > 0 && dtPatBaseInf.Rows[0]["MainNarrative"].ToString() != "" ? dtPatBaseInf.Rows[0]["MainNarrative"].ToString() : "暂无",
                     MedicalHistory = "暂无",
                     PatientSign = "暂无",
                     PatientExtraStudy = "暂无",
@@ -128,7 +128,7 @@ namespace WebServiceGradedDiagnosis.DAL
                 {
                     PID = dtMzsf.Rows[0]["卡号"].ToString(),
                     OutPatientNo = dtMzsf.Rows[0]["卡号"].ToString(),
-                    InsuranceNo = dtMzsf.Rows[0]["医疗保险号"].ToString(),
+                    InsuranceNo = "暂无",
                     CheckTime = Convert.ToDateTime(dtMzsf.Rows[0]["日期"]).ToString("yyyy-MM-dd hh:mm:ss"),
                     PatientName = dtGh.Rows[0]["姓名"].ToString(),
                     HospitalId = ConfigurationManager.AppSettings["HospitalId"],
@@ -139,7 +139,7 @@ namespace WebServiceGradedDiagnosis.DAL
                     Nation = dtGh.Rows[0]["民族"].ToString().Trim(),
                     PatientStature = 0,
                     PatientWeight = 0,
-                    Phone = dtGh.Rows[0]["电话"].ToString(),
+                    Phone = dtGh.Rows[0]["电话"].ToString() != "" ? dtGh.Rows[0]["电话"].ToString() : "暂无",
                     Address = dtGh.Rows[0]["通信地址"].ToString().Trim(),
                     Contacts = null,
                     RelationShip = null,
@@ -165,9 +165,9 @@ namespace WebServiceGradedDiagnosis.DAL
                 DataTable dtMzbl = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlMzbl).Tables[0];
                 if (dtMzbl != null && dtMzbl.Rows.Count > 0)
                 {
-                    patient.AppDiagonse = dtMzbl.Rows[0]["西医诊断"].ToString();
-                    patient.ChiefComplaint = dtMzbl.Rows[0]["主诉"].ToString();
-                    patient.MedicalHistory = dtMzbl.Rows[0]["现病史"].ToString();
+                    patient.AppDiagonse = dtMzbl.Rows[0]["西医诊断"].ToString().Equals("") ? "暂无" : dtMzbl.Rows[0]["西医诊断"].ToString();
+                    patient.ChiefComplaint = dtMzbl.Rows[0]["主诉"].ToString().Equals("") ? "暂无" : dtMzbl.Rows[0]["主诉"].ToString();
+                    patient.MedicalHistory = dtMzbl.Rows[0]["现病史"].ToString().Equals("") ? "暂无" : dtMzbl.Rows[0]["主诉"].ToString();
                     patient.PatientSign = "暂无";
                     patient.PatientExtraStudy = "暂无";
                     patient.AuxiliaryRecord = "暂无";
