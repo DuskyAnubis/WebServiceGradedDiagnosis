@@ -98,7 +98,7 @@ namespace WebServiceGradedDiagnosis.DAL
                     IdentCard = dtBak.Rows[0]["身份证号"].ToString(),
                     InsuranceTypeCode = "暂无",
                     InsuranceTypeName = dtBak.Rows[0]["医保类型"].ToString(),
-                    InsuranceNo = null,
+                    InsuranceNo = "暂无",
                     DeptCode = dtDep != null && dtDep.Rows.Count > 0 ? dtDep.Rows[0]["科室代码"].ToString() : "暂无",
                     DeptName = dtBak.Rows[0]["科室"].ToString(),
                     AppDiagonse = dtPatBaseInf != null && dtPatBaseInf.Rows.Count > 0 ? dtPatBaseInf.Rows[0]["Diagnosis1"].ToString() : "暂无",
