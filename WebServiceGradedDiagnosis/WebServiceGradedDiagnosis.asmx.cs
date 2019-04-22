@@ -40,7 +40,7 @@ namespace WebServiceGradedDiagnosis
                       new XElement
                       (
                        "response",
-                       new XElement("resultCode", 0),
+                       new XElement("resultCode", 1),
                        new XElement("resultMsg", "未能查询到患者基本信息!"),
                        new XElement("resultContent")
                       )
@@ -62,7 +62,7 @@ namespace WebServiceGradedDiagnosis
                      new XElement
                      (
                       "response",
-                      new XElement("resultCode", 0),
+                      new XElement("resultCode", 1),
                       new XElement("resultMsg", "系统出现内部错误!"),
                       new XElement("resultContent")
                      )
@@ -84,7 +84,7 @@ namespace WebServiceGradedDiagnosis
                 new XElement
                 (
                    "response",
-                    new XElement("resultCode", 0),
+                    new XElement("resultCode", 1),
                     new XElement("resultMsg", "系统未能查询到患者检查记录!"),
                     new XElement("resultContent")
                  )
@@ -113,7 +113,7 @@ namespace WebServiceGradedDiagnosis
                       new XElement
                       (
                        "response",
-                       new XElement("resultCode", 0),
+                       new XElement("resultCode", 1),
                        new XElement("resultMsg", "未能查询到检验报告信息!"),
                        new XElement("resultContent")
                       )
@@ -134,7 +134,7 @@ namespace WebServiceGradedDiagnosis
                     new XElement
                     (
                      "response",
-                     new XElement("resultCode", 0),
+                     new XElement("resultCode", 1),
                      new XElement("resultMsg", "系统出现内部错误!"),
                      new XElement("resultContent")
                     )
@@ -164,7 +164,7 @@ namespace WebServiceGradedDiagnosis
                       new XElement
                       (
                        "response",
-                       new XElement("resultCode", 0),
+                       new XElement("resultCode", 1),
                        new XElement("resultMsg", "未能查询到检验报告详情!"),
                        new XElement("resultContent")
                       )
@@ -185,7 +185,7 @@ namespace WebServiceGradedDiagnosis
                     new XElement
                     (
                      "response",
-                     new XElement("resultCode", 0),
+                     new XElement("resultCode", 1),
                      new XElement("resultMsg", "系统出现内部错误!"),
                      new XElement("resultContent")
                     )
@@ -215,7 +215,7 @@ namespace WebServiceGradedDiagnosis
                       new XElement
                       (
                        "response",
-                       new XElement("resultCode", 0),
+                       new XElement("resultCode", 1),
                        new XElement("resultMsg", "未能查询到患者入院记录!"),
                        new XElement("resultContent")
                       )
@@ -236,7 +236,7 @@ namespace WebServiceGradedDiagnosis
                     new XElement
                     (
                      "response",
-                     new XElement("resultCode", 0),
+                     new XElement("resultCode", 1),
                      new XElement("resultMsg", "系统出现内部错误!"),
                      new XElement("resultContent")
                     )
@@ -258,7 +258,7 @@ namespace WebServiceGradedDiagnosis
                 new XElement
                 (
                    "response",
-                    new XElement("resultCode", 0),
+                    new XElement("resultCode", 1),
                     new XElement("resultMsg", "系统未能查询到患者病程记录!"),
                     new XElement("resultContent")
                 )
@@ -287,7 +287,7 @@ namespace WebServiceGradedDiagnosis
                       new XElement
                       (
                        "response",
-                       new XElement("resultCode", 0),
+                       new XElement("resultCode", 1),
                        new XElement("resultMsg", "未能查询到患者医嘱信息!"),
                        new XElement("resultContent")
                       )
@@ -308,7 +308,7 @@ namespace WebServiceGradedDiagnosis
                     new XElement
                     (
                      "response",
-                     new XElement("resultCode", 0),
+                     new XElement("resultCode", 1),
                      new XElement("resultMsg", "系统出现内部错误!"),
                      new XElement("resultContent")
                     )
@@ -338,7 +338,7 @@ namespace WebServiceGradedDiagnosis
                       new XElement
                       (
                        "response",
-                       new XElement("resultCode", 0),
+                       new XElement("resultCode", 1),
                        new XElement("resultMsg", "未能查询到患者出院小结!"),
                        new XElement("resultContent")
                       )
@@ -359,7 +359,7 @@ namespace WebServiceGradedDiagnosis
                     new XElement
                     (
                      "response",
-                     new XElement("resultCode", 0),
+                     new XElement("resultCode", 1),
                      new XElement("resultMsg", "系统出现内部错误!"),
                      new XElement("resultContent")
                     )
@@ -389,7 +389,7 @@ namespace WebServiceGradedDiagnosis
                       new XElement
                       (
                        "response",
-                       new XElement("resultCode", 0),
+                       new XElement("resultCode", 1),
                        new XElement("resultMsg", "未能查询到患者门诊处方!"),
                        new XElement("resultContent")
                       )
@@ -416,7 +416,7 @@ namespace WebServiceGradedDiagnosis
                     new XElement
                     (
                      "response",
-                     new XElement("resultCode", 0),
+                     new XElement("resultCode", 1),
                      new XElement("resultMsg", "系统出现内部错误!"),
                      new XElement("resultContent")
                     )
@@ -446,7 +446,7 @@ namespace WebServiceGradedDiagnosis
                       new XElement
                       (
                        "response",
-                       new XElement("resultCode", 0),
+                       new XElement("resultCode", 1),
                        new XElement("resultMsg", "未能查询到患者门诊病历!"),
                        new XElement("resultContent")
                       )
@@ -467,7 +467,7 @@ namespace WebServiceGradedDiagnosis
                     new XElement
                     (
                      "response",
-                     new XElement("resultCode", 0),
+                     new XElement("resultCode", 1),
                      new XElement("resultMsg", "系统出现内部错误!"),
                      new XElement("resultContent")
                     )

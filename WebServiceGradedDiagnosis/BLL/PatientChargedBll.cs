@@ -21,7 +21,7 @@ namespace WebServiceGradedDiagnosis.BLL
                 new XElement
                 (
                    "response",
-                   new XElement("resultCode", 1),
+                   new XElement("resultCode", 0),
                    new XElement("resultMsg", "获取患者医嘱信息成功!"),
                    new XElement
                    (

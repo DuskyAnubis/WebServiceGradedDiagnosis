@@ -15,7 +15,7 @@ namespace WebServiceGradedDiagnosis.DAL
         public List<PatientCharged> GetPatientChargeds(Request request)
         {
             string sqlBak = $"select top 1 * from(select 病人编号,住院号,姓名,入院日期,医保类型,性别,身份证号,年龄,出生日期,民族,婚否,职业,电话,家庭住址,联系人,联系人地址,联系电话,关系,入院诊断,病情,确诊诊断,出院日期,治疗情况,住院天数,医师代码,科室,病室,床位 from ZY_病案库 where 住院号<>'0') as BAK where 住院号='{request.InPatientNo}' and 身份证号='{request.IdentCard}' order by 入院日期 desc";
-            
+
             DataTable dtBak = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlBak).Tables[0];
 
             if (dtBak != null && dtBak.Rows.Count > 0)
@@ -50,11 +50,11 @@ namespace WebServiceGradedDiagnosis.DAL
                             DAtype = dtYz.Rows[i]["医嘱类别"].ToString() == "长期医嘱" ? "长期" : "临时",
                             Execdate = dtYz.Rows[i]["执行时间"] is DBNull ? "暂无" : Convert.ToDateTime(dtYz.Rows[i]["执行时间"]).ToString("yyyy-MM-dd hh:mm:ss"),
                             Enddate = dtYz.Rows[i]["停止时间"] is DBNull ? "暂无" : Convert.ToDateTime(dtYz.Rows[i]["停止时间"]).ToString("yyyy-MM-dd hh:mm:ss"),
-                            Medspec = dtYz.Rows[i]["规格"] is DBNull ? "暂无" : dtYz.Rows[i]["规格"].ToString(),
-                            Medusage = dtYz.Rows[i]["用法"] is DBNull ? "暂无" : dtYz.Rows[i]["用法"].ToString(),
-                            Dose = dtYz.Rows[i]["用量"] is DBNull ? "暂无" : dtYz.Rows[i]["用量"].ToString(),
-                            Frequency = dtYz.Rows[i]["执行频率"] is DBNull ? "暂无" : dtYz.Rows[i]["执行频率"].ToString(),
-                            Provide = dtYz.Rows[i]["用量"] is DBNull ? "暂无" : dtYz.Rows[i]["用量"].ToString(),
+                            Medspec = dtYz.Rows[i]["规格"] is DBNull || dtYz.Rows[i]["规格"].ToString().Equals("") ? "暂无" : dtYz.Rows[i]["规格"].ToString(),
+                            Medusage = dtYz.Rows[i]["用法"] is DBNull || dtYz.Rows[i]["用法"].ToString().Equals("") ? "暂无" : dtYz.Rows[i]["用法"].ToString(),
+                            Dose = dtYz.Rows[i]["用量"] is DBNull || dtYz.Rows[i]["用量"].ToString().Equals("") ? "暂无" : dtYz.Rows[i]["用量"].ToString(),
+                            Frequency = dtYz.Rows[i]["执行频率"] is DBNull || dtYz.Rows[i]["执行频率"].ToString().Equals("") ? "暂无" : dtYz.Rows[i]["执行频率"].ToString(),
+                            Provide = dtYz.Rows[i]["用量"] is DBNull || dtYz.Rows[i]["用量"].ToString().Equals("") ? "暂无" : dtYz.Rows[i]["用量"].ToString(),
                             Checkpart = "暂无",
                             Remark = "暂无",
                             Other1 = null,

@@ -27,7 +27,7 @@ namespace WebServiceGradedDiagnosis.DAL
                 string startDate = Convert.ToDateTime(dtMzsf.Rows[0]["日期"]).ToString("yyyy-MM-dd") + " 00:00:00";
                 string endDate = Convert.ToDateTime(dtMzsf.Rows[0]["日期"]).ToString("yyyy-MM-dd") + " 23:59:59";
 
-                string sqlMzhj = $"select * from (select 发票流水号,日期,卡号,病人姓名,科室ID,医师,YF_ID,名称,单位,数量,用法,用量 from 划价临时库 where 材质分类 in ('西药','中成药','中草药','中药颗粒','中药饮片') and 科室ID<>0 and 发票流水号<>'-1' union select 发票流水号,日期,卡号,病人姓名,科室ID,医师,YF_ID,名称,单位,数量,用法,用量 from 划价流水帐 where 材质分类 in ('西药','中成药','中草药','中药颗粒','中药饮片') and 科室ID<>0 and 发票流水号<>'-1') as Mzhj where 卡号='{dtMzsf.Rows[0]["卡号"].ToString()}' and 日期 between '{startDate}' and '{endDate}'";
+                string sqlMzhj = $"select * from (select 发票流水号,日期,卡号,病人姓名,科室ID,医师,YF_ID,名称,单位,数量,用法,用量,材质分类 from 划价临时库 where 材质分类 in ('西药','中成药','中草药','中药颗粒','中药饮片') and 科室ID<>0 and 发票流水号<>'-1' union select 发票流水号,日期,卡号,病人姓名,科室ID,医师,YF_ID,名称,单位,数量,用法,用量,材质分类 from 划价流水帐 where 材质分类 in ('西药','中成药','中草药','中药颗粒','中药饮片') and 科室ID<>0 and 发票流水号<>'-1') as Mzhj where 卡号='{dtMzsf.Rows[0]["卡号"].ToString()}' and 日期 between '{startDate}' and '{endDate}'";
                 DataTable dtMzhj = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HisConnectionString"), sqlMzhj).Tables[0];
 
                 if (dtMzhj != null && dtMzhj.Rows.Count > 0)
@@ -46,8 +46,8 @@ namespace WebServiceGradedDiagnosis.DAL
                         OrderDate = Convert.ToDateTime(dtMzsf.Rows[0]["日期"]).ToString("yyyy-MM-dd"),
                         DoctorDiagnosis = dtMzbl != null && dtMzbl.Rows.Count > 0 && dtMzbl.Rows[0]["西医诊断"].ToString() != "" ? dtMzbl.Rows[0]["西医诊断"].ToString() : null,
                         PrescripName = "门诊处方",
-                        PrescripTypeId = dtMzhj.Rows[0]["发票流水号"].ToString() == "西药" ? "2" : "1",
-                        PrescripTypeName = dtMzhj.Rows[0]["发票流水号"].ToString() == "西药" ? "西药" : "中药",
+                        PrescripTypeId = dtMzhj.Rows[0]["材质分类"].ToString() == "西药" ? "2" : "1",
+                        PrescripTypeName = dtMzhj.Rows[0]["材质分类"].ToString() == "西药" ? "2" : "1",
                         Other1 = null,
                         Other2 = null,
                         Other3 = null,
