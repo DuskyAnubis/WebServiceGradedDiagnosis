@@ -23,9 +23,9 @@ namespace WebServiceGradedDiagnosis
     public class WebServiceGradedDiagnosis : System.Web.Services.WebService
     {
         [WebMethod]
-        public XmlDocument GetPatientInfoBySeachType(string requestXml)
+        public string GetPatientInfoBySeachType(string requestXml)
         {
-            XmlDocument doc;
+            string doc;
             try
             {
                 Request request = RequestHelper.GetRequest(requestXml);
@@ -45,14 +45,12 @@ namespace WebServiceGradedDiagnosis
                        new XElement("resultContent")
                       )
                     );
-                    doc = new XmlDocument();
-                    doc.LoadXml(xDoc.ToString());
+                    doc = xDoc.ToString();
                 }
                 else
                 {
                     doc = patientBll.ConvertPatientToXml(patient);
                 }
-
             }
             catch (Exception)
             {
@@ -67,17 +65,17 @@ namespace WebServiceGradedDiagnosis
                       new XElement("resultContent")
                      )
                    );
-                doc = new XmlDocument();
-                doc.LoadXml(xDoc.ToString());
+                doc = xDoc.ToString();
+
                 return doc;
             }
             return doc;
         }
 
         [WebMethod]
-        public XmlDocument GetJCList(string requestXml)
+        public string GetJCList(string requestXml)
         {
-            XmlDocument doc;
+            string doc;
             XDocument xDoc = new XDocument
             (
                 new XDeclaration("1.0", "utf-8", "yes"),
@@ -89,16 +87,15 @@ namespace WebServiceGradedDiagnosis
                     new XElement("resultContent")
                  )
             );
-            doc = new XmlDocument();
-            doc.LoadXml(xDoc.ToString());
+            doc = xDoc.ToString();
 
             return doc;
         }
 
         [WebMethod]
-        public XmlDocument GetJYList(string requestXml)
+        public string GetJYList(string requestXml)
         {
-            XmlDocument doc;
+            string doc;
             try
             {
                 Request request = RequestHelper.GetRequest(requestXml);
@@ -118,8 +115,7 @@ namespace WebServiceGradedDiagnosis
                        new XElement("resultContent")
                       )
                     );
-                    doc = new XmlDocument();
-                    doc.LoadXml(xDoc.ToString());
+                    doc = xDoc.ToString();
                 }
                 else
                 {
@@ -139,17 +135,17 @@ namespace WebServiceGradedDiagnosis
                      new XElement("resultContent")
                     )
                   );
-                doc = new XmlDocument();
-                doc.LoadXml(xDoc.ToString());
+                doc = xDoc.ToString();
+
                 return doc;
             }
             return doc;
         }
 
         [WebMethod]
-        public XmlDocument GetJYDetail(string requestXml)
+        public string GetJYDetail(string requestXml)
         {
-            XmlDocument doc;
+            string doc;
             try
             {
                 JYDetailRequest request = RequestHelper.GetJYDetailRequest(requestXml);
@@ -169,8 +165,7 @@ namespace WebServiceGradedDiagnosis
                        new XElement("resultContent")
                       )
                     );
-                    doc = new XmlDocument();
-                    doc.LoadXml(xDoc.ToString());
+                    doc = xDoc.ToString();
                 }
                 else
                 {
@@ -190,17 +185,17 @@ namespace WebServiceGradedDiagnosis
                      new XElement("resultContent")
                     )
                   );
-                doc = new XmlDocument();
-                doc.LoadXml(xDoc.ToString());
+                doc = xDoc.ToString();
+
                 return doc;
             }
             return doc;
         }
 
         [WebMethod]
-        public XmlDocument GetIntoHospitalList(string requestXml)
+        public string GetIntoHospitalList(string requestXml)
         {
-            XmlDocument doc;
+            string doc;
             try
             {
                 Request request = RequestHelper.GetRequest(requestXml);
@@ -220,8 +215,7 @@ namespace WebServiceGradedDiagnosis
                        new XElement("resultContent")
                       )
                     );
-                    doc = new XmlDocument();
-                    doc.LoadXml(xDoc.ToString());
+                    doc = xDoc.ToString();
                 }
                 else
                 {
@@ -241,17 +235,17 @@ namespace WebServiceGradedDiagnosis
                      new XElement("resultContent")
                     )
                   );
-                doc = new XmlDocument();
-                doc.LoadXml(xDoc.ToString());
+                doc = xDoc.ToString();
+
                 return doc;
             }
             return doc;
         }
 
         [WebMethod]
-        public XmlDocument GetPatientDiseCourse(string requestXml)
+        public string GetPatientDiseCourse(string requestXml)
         {
-            XmlDocument doc;
+            string doc;
             XDocument xDoc = new XDocument
             (
                 new XDeclaration("1.0", "utf-8", "yes"),
@@ -263,16 +257,15 @@ namespace WebServiceGradedDiagnosis
                     new XElement("resultContent")
                 )
             );
-            doc = new XmlDocument();
-            doc.LoadXml(xDoc.ToString());
+            doc = xDoc.ToString();
 
             return doc;
         }
 
         [WebMethod]
-        public XmlDocument GetIPatientCharged(string requestXml)
+        public string GetIPatientCharged(string requestXml)
         {
-            XmlDocument doc;
+            string doc;
             try
             {
                 Request request = RequestHelper.GetRequest(requestXml);
@@ -292,8 +285,7 @@ namespace WebServiceGradedDiagnosis
                        new XElement("resultContent")
                       )
                     );
-                    doc = new XmlDocument();
-                    doc.LoadXml(xDoc.ToString());
+                    doc = xDoc.ToString();
                 }
                 else
                 {
@@ -313,17 +305,17 @@ namespace WebServiceGradedDiagnosis
                      new XElement("resultContent")
                     )
                   );
-                doc = new XmlDocument();
-                doc.LoadXml(xDoc.ToString());
+                doc = xDoc.ToString();
+
                 return doc;
             }
             return doc;
         }
 
         [WebMethod]
-        public XmlDocument GetOutHospitalInfo(string requestXml)
+        public string GetOutHospitalInfo(string requestXml)
         {
-            XmlDocument doc;
+            string doc;
             try
             {
                 Request request = RequestHelper.GetRequest(requestXml);
@@ -343,8 +335,7 @@ namespace WebServiceGradedDiagnosis
                        new XElement("resultContent")
                       )
                     );
-                    doc = new XmlDocument();
-                    doc.LoadXml(xDoc.ToString());
+                    doc = xDoc.ToString();
                 }
                 else
                 {
@@ -364,17 +355,17 @@ namespace WebServiceGradedDiagnosis
                      new XElement("resultContent")
                     )
                   );
-                doc = new XmlDocument();
-                doc.LoadXml(xDoc.ToString());
+                doc = xDoc.ToString();
+
                 return doc;
             }
             return doc;
         }
 
         [WebMethod]
-        public XmlDocument GetPrescriptionInfo(string requestXml)
+        public string GetPrescriptionInfo(string requestXml)
         {
-            XmlDocument doc;
+            string doc;
             try
             {
                 Request request = RequestHelper.GetRequest(requestXml);
@@ -394,8 +385,7 @@ namespace WebServiceGradedDiagnosis
                        new XElement("resultContent")
                       )
                     );
-                    doc = new XmlDocument();
-                    doc.LoadXml(xDoc.ToString());
+                    doc = xDoc.ToString();
                 }
                 else
                 {
@@ -421,17 +411,17 @@ namespace WebServiceGradedDiagnosis
                      new XElement("resultContent")
                     )
                   );
-                doc = new XmlDocument();
-                doc.LoadXml(xDoc.ToString());
+                doc = xDoc.ToString();
+
                 return doc;
             }
             return doc;
         }
 
         [WebMethod]
-        public XmlDocument GetPatientMedicalRecords(string requestXml)
+        public string GetPatientMedicalRecords(string requestXml)
         {
-            XmlDocument doc;
+            string doc;
             try
             {
                 Request request = RequestHelper.GetRequest(requestXml);
@@ -451,8 +441,7 @@ namespace WebServiceGradedDiagnosis
                        new XElement("resultContent")
                       )
                     );
-                    doc = new XmlDocument();
-                    doc.LoadXml(xDoc.ToString());
+                    doc = xDoc.ToString();
                 }
                 else
                 {
@@ -472,8 +461,8 @@ namespace WebServiceGradedDiagnosis
                      new XElement("resultContent")
                     )
                   );
-                doc = new XmlDocument();
-                doc.LoadXml(xDoc.ToString());
+                doc = xDoc.ToString();
+
                 return doc;
             }
             return doc;

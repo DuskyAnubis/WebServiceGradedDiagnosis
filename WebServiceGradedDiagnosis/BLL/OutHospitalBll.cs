@@ -11,9 +11,9 @@ namespace WebServiceGradedDiagnosis.BLL
 {
     public class OutHospitalBll
     {
-        public XmlDocument ConvertOutHospitalToXml(OutHospital outHospital)
+        public string ConvertOutHospitalToXml(OutHospital outHospital)
         {
-            XmlDocument xmlDoc = new XmlDocument();
+            //XmlDocument xmlDoc = new XmlDocument();
 
             XDocument xDoc = new XDocument
             (
@@ -58,9 +58,9 @@ namespace WebServiceGradedDiagnosis.BLL
                 )
             );
 
-            xmlDoc.LoadXml(xDoc.ToString());
+            //xmlDoc.LoadXml(xDoc.ToString());
 
-            return xmlDoc;
+            return xDoc.ToString();
         }
 
         public OutHospital GetOutHospital(Request request)

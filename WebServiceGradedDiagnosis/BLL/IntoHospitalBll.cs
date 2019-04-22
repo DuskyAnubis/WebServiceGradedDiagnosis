@@ -11,9 +11,9 @@ namespace WebServiceGradedDiagnosis.BLL
 {
     public class IntoHospitalBll
     {
-        public XmlDocument ConvertIntoHospitalToXml(IntoHospital intoHospital)
+        public string ConvertIntoHospitalToXml(IntoHospital intoHospital)
         {
-            XmlDocument xmlDoc = new XmlDocument();
+            //XmlDocument xmlDoc = new XmlDocument();
 
             XDocument xDoc = new XDocument
             (
@@ -68,9 +68,9 @@ namespace WebServiceGradedDiagnosis.BLL
                 )
             );
 
-            xmlDoc.LoadXml(xDoc.ToString());
+            //xmlDoc.LoadXml(xDoc.ToString());
 
-            return xmlDoc;
+            return xDoc.ToString();
         }
 
         public IntoHospital GetIntoHospital(Request request)

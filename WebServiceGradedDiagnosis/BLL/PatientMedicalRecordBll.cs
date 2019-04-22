@@ -11,9 +11,9 @@ namespace WebServiceGradedDiagnosis.BLL
 {
     public class PatientMedicalRecordBll
     {
-        public XmlDocument ConvertPatientMedicalRecordToXml(PatientMedicalRecord patientMedicalRecord)
+        public string ConvertPatientMedicalRecordToXml(PatientMedicalRecord patientMedicalRecord)
         {
-            XmlDocument xmlDoc = new XmlDocument();
+            //XmlDocument xmlDoc = new XmlDocument();
 
             XDocument xDoc = new XDocument
             (
@@ -56,9 +56,9 @@ namespace WebServiceGradedDiagnosis.BLL
                 )
             );
 
-            xmlDoc.LoadXml(xDoc.ToString());
+            //xmlDoc.LoadXml(xDoc.ToString());
 
-            return xmlDoc;
+            return xDoc.ToString();
         }
 
         public PatientMedicalRecord GetPatientMedicalRecord(Request request)

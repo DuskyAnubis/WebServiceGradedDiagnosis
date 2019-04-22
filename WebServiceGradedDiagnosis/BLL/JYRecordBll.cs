@@ -11,9 +11,9 @@ namespace WebServiceGradedDiagnosis.BLL
 {
     public class JYRecordBll
     {
-        public XmlDocument ConvertJYRecordToXml(List<JYRecord> jYRecords)
+        public string ConvertJYRecordToXml(List<JYRecord> jYRecords)
         {
-            XmlDocument xmlDoc = new XmlDocument();
+            //XmlDocument xmlDoc = new XmlDocument();
 
             XDocument xDoc = new XDocument
             (
@@ -67,9 +67,9 @@ namespace WebServiceGradedDiagnosis.BLL
               )
            );
 
-            xmlDoc.LoadXml(xDoc.ToString());
+            //xmlDoc.LoadXml(xDoc.ToString());
 
-            return xmlDoc;
+            return xDoc.ToString();
         }
 
         public List<JYRecord> GetJYRecords(Request request)

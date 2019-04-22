@@ -11,9 +11,9 @@ namespace WebServiceGradedDiagnosis.BLL
 {
     public class JYDetailBll
     {
-        public XmlDocument ConvertJYDetailToXml(List<JYDetail> jYDetails)
+        public string ConvertJYDetailToXml(List<JYDetail> jYDetails)
         {
-            XmlDocument xmlDoc = new XmlDocument();
+            //XmlDocument xmlDoc = new XmlDocument();
 
             XDocument xDoc = new XDocument
             (
@@ -48,9 +48,9 @@ namespace WebServiceGradedDiagnosis.BLL
              )
            );
 
-            xmlDoc.LoadXml(xDoc.ToString());
+            //xmlDoc.LoadXml(xDoc.ToString());
 
-            return xmlDoc;
+            return xDoc.ToString();
         }
 
         public List<JYDetail> GetJYDetails(JYDetailRequest request)

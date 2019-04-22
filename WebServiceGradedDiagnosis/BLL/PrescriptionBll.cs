@@ -11,9 +11,9 @@ namespace WebServiceGradedDiagnosis.BLL
 {
     public class PrescriptionBll
     {
-        public XmlDocument ConvertPrescriptionToXml(Prescription prescription, List<PrescriptionDetail> prescriptionDetails)
+        public string ConvertPrescriptionToXml(Prescription prescription, List<PrescriptionDetail> prescriptionDetails)
         {
-            XmlDocument xmlDoc = new XmlDocument();
+            //XmlDocument xmlDoc = new XmlDocument();
 
             XDocument xDoc = new XDocument
             (
@@ -61,9 +61,9 @@ namespace WebServiceGradedDiagnosis.BLL
                 )
             );
 
-            xmlDoc.LoadXml(xDoc.ToString());
+            //xmlDoc.LoadXml(xDoc.ToString());
 
-            return xmlDoc;
+            return xDoc.ToString();
         }
 
         public Prescription GetPrescription(Request request)
