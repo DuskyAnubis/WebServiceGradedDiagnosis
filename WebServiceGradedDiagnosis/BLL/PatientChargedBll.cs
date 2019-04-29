@@ -51,7 +51,7 @@ namespace WebServiceGradedDiagnosis.BLL
                          new XElement("dose", patientCharged.Dose),
                          new XElement("frequency", patientCharged.Frequency),
                          new XElement("provide", patientCharged.Provide),
-                         new XElement("checkpart", patientCharged.Checkpart),
+                         new XElement("checkPart", patientCharged.Checkpart),
                          new XElement("remark", patientCharged.Remark),
                          new XElement("other1", patientCharged.Other1),
                          new XElement("other2", patientCharged.Other2),

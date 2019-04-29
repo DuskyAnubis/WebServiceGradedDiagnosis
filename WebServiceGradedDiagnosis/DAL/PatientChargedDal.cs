@@ -47,7 +47,7 @@ namespace WebServiceGradedDiagnosis.DAL
                             DAmemo = dtYz.Rows[i]["名称"].ToString(),
                             Doctor = dtYz.Rows[i]["医师"].ToString(),
                             Nurse = dtYz.Rows[i]["执行人"] is DBNull ? "暂无" : dtYz.Rows[i]["执行人"].ToString(),
-                            DAtype = dtYz.Rows[i]["医嘱类别"].ToString() == "长期医嘱" ? "长期" : "临时",
+                            DAtype = dtYz.Rows[i]["医嘱类别"].ToString() == "长期医嘱" ? "1" : "2",
                             Execdate = dtYz.Rows[i]["执行时间"] is DBNull ? "暂无" : Convert.ToDateTime(dtYz.Rows[i]["执行时间"]).ToString("yyyy-MM-dd hh:mm:ss"),
                             Enddate = dtYz.Rows[i]["停止时间"] is DBNull ? "暂无" : Convert.ToDateTime(dtYz.Rows[i]["停止时间"]).ToString("yyyy-MM-dd hh:mm:ss"),
                             Medspec = dtYz.Rows[i]["规格"] is DBNull || dtYz.Rows[i]["规格"].ToString().Equals("") ? "暂无" : dtYz.Rows[i]["规格"].ToString(),

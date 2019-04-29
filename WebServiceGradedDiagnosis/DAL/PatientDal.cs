@@ -90,7 +90,7 @@ namespace WebServiceGradedDiagnosis.DAL
                     PatientStature = 0,
                     PatientWeight = 0,
                     Phone = dtBak.Rows[0]["电话"].ToString() != "" ? dtBak.Rows[0]["电话"].ToString() : "暂无",
-                    Address = dtBak.Rows[0]["家庭住址"].ToString(),
+                    Address = dtBak.Rows[0]["家庭住址"].ToString() != "" ? dtBak.Rows[0]["家庭住址"].ToString() : "暂无",
                     Contacts = dtBak.Rows[0]["联系人"].ToString(),
                     RelationShip = dtBak.Rows[0]["关系"].ToString(),
                     ContactPhone = dtBak.Rows[0]["联系电话"].ToString(),

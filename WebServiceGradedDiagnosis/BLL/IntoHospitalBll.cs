@@ -32,7 +32,7 @@ namespace WebServiceGradedDiagnosis.BLL
                        new XElement("patientAge", intoHospital.PatientAge),
                        new XElement("identCard", intoHospital.IdentCard),
                        new XElement("genderValue", intoHospital.GenderValue),
-                       new XElement("rcvdate", intoHospital.Rcvdate),
+                       new XElement("rcvDate", intoHospital.Rcvdate),
                        new XElement("actionInChief", intoHospital.ActionInChief),
                        new XElement("allergicHistory", intoHospital.AllergicHistory),
                        new XElement("hisPresentIllness", intoHospital.HisPresentIllness),

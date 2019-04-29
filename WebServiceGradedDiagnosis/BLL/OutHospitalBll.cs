@@ -46,7 +46,7 @@ namespace WebServiceGradedDiagnosis.BLL
                        new XElement("attDoctNo", outHospital.AttdoctNo),
                        new XElement("attDoct", outHospital.Attdoct),
                        new XElement("pathologyNo", outHospital.PathologyNo),
-                       new XElement("fillingData", outHospital.FillingData),
+                       new XElement("fillingDate", outHospital.FillingData),
                        new XElement("other1", outHospital.Other1),
                        new XElement("other2", outHospital.Other2),
                        new XElement("other3", outHospital.Other3),
