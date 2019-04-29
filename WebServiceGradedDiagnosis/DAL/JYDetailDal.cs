@@ -15,7 +15,7 @@ namespace WebServiceGradedDiagnosis.DAL
     {
         public List<JYDetail> GetJYDetails(JYDetailRequest request)
         {
-            string sqlJyDetail = $"select testno,itemno,itemname,testresult,isnull(resultflag,'暂无') as resultflag,isnull(units,'暂无') as units,isnull(ranges,'暂无') as ranges from lis_reqresult where testno='{request.ReqId}' order by seqno";
+            string sqlJyDetail = $"select testno,itemno,itemname,testresult,isnull(resultflag,'') as resultflag,isnull(units,'') as units,isnull(ranges,'') as ranges from lis_reqresult where testno='{request.ReqId}' order by seqno";
             DataTable dtJyDetail = SqlCommon.ExecuteSqlToDataSet(SqlCommon.GetConnectionStringFromConnectionStrings("HosdataConnectionString"), sqlJyDetail).Tables[0];
 
             if (dtJyDetail != null && dtJyDetail.Rows.Count > 0)
@@ -28,8 +28,8 @@ namespace WebServiceGradedDiagnosis.DAL
                     {
                         ItemName = dtJyDetail.Rows[i]["itemname"].ToString(),
                         Result = dtJyDetail.Rows[i]["testresult"].ToString(),
-                        Units = dtJyDetail.Rows[i]["units"].ToString(),
-                        ResultRange = dtJyDetail.Rows[i]["ranges"].ToString(),
+                        Units = dtJyDetail.Rows[i]["units"].ToString() != "" ? dtJyDetail.Rows[i]["units"].ToString() : "暂无",
+                        ResultRange = dtJyDetail.Rows[i]["ranges"].ToString() != "" ? dtJyDetail.Rows[i]["ranges"].ToString() : "暂无",
                         Code = dtJyDetail.Rows[i]["itemno"].ToString(),
                         Other1 = null,
                         Other2 = null,
