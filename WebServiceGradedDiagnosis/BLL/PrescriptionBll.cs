@@ -38,7 +38,7 @@ namespace WebServiceGradedDiagnosis.BLL
                        select new XElement
                        (
                            "prescriptionList",
-                           new XElement("medicineNO", prescriptionDetail.MedicineNO),
+                           new XElement("medicineNo", prescriptionDetail.MedicineNO),
                            new XElement("medicineName", prescriptionDetail.MedicineName),
                            new XElement("medicineCount", prescriptionDetail.MedicineCount),
                            new XElement("medicineUnit", prescriptionDetail.MedicineUnit),
