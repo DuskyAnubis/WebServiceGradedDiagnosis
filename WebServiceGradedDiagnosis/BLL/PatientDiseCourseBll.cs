@@ -55,7 +55,7 @@ namespace WebServiceGradedDiagnosis.BLL
                        new XElement("other5", patientDiseCourse.Other5),
                        new XElement("PID", patientDiseCourse.PID),
                        new XElement("identCard", patientDiseCourse.IdentCard),
-                       new XElement("inpatientNo", patientDiseCourse.IdentCard),
+                       new XElement("inPatientNo", patientDiseCourse.IdentCard),
                        new XElement("dzjkNo", patientDiseCourse.DzjkNo)
                    )
                 )

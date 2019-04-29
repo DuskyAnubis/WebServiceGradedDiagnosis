@@ -29,7 +29,7 @@ namespace WebServiceGradedDiagnosis.DAL
                     {
                         MedicineNO = dtMzhj.Rows[i]["YF_ID"].ToString(),
                         MedicineName = dtMzhj.Rows[i]["名称"].ToString(),
-                        MedicineCount = dtMzhj.Rows[i]["数量"].ToString(),
+                        MedicineCount = Convert.ToDouble(dtMzhj.Rows[i]["数量"]).ToString("0.00"),
                         MedicineUnit = dtMzhj.Rows[i]["单位"].ToString(),
                         Usage = dtMzhj.Rows[i]["用法"].ToString() + dtMzhj.Rows[i]["用量"].ToString(),
                     };

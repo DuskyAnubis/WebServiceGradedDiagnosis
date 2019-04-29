@@ -59,7 +59,7 @@ namespace WebServiceGradedDiagnosis.BLL
                          new XElement("hospitalId", jyRecord.HospitalId),
                          new XElement("pid", jyRecord.PID),
                          new XElement("identCard", jyRecord.IdentCard),
-                         new XElement("inpatientNo", jyRecord.InpatientNo),
+                         new XElement("inPatientNo", jyRecord.InpatientNo),
                          new XElement("outPatientNo", jyRecord.OutPatientNo),
                          new XElement("dzjkNo", jyRecord.DzjkNo)
                      )
