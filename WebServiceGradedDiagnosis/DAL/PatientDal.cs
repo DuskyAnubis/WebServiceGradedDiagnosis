@@ -167,7 +167,7 @@ namespace WebServiceGradedDiagnosis.DAL
                 {
                     patient.AppDiagonse = dtMzbl.Rows[0]["西医诊断"].ToString().Equals("") ? "暂无" : dtMzbl.Rows[0]["西医诊断"].ToString();
                     patient.ChiefComplaint = dtMzbl.Rows[0]["主诉"].ToString().Equals("") ? "暂无" : dtMzbl.Rows[0]["主诉"].ToString();
-                    patient.MedicalHistory = dtMzbl.Rows[0]["现病史"].ToString().Equals("") ? "暂无" : dtMzbl.Rows[0]["主诉"].ToString();
+                    patient.MedicalHistory = dtMzbl.Rows[0]["现病史"].ToString().Equals("") ? "暂无" : dtMzbl.Rows[0]["现病史"].ToString();
                     patient.PatientSign = "暂无";
                     patient.PatientExtraStudy = "暂无";
                     patient.AuxiliaryRecord = "暂无";
